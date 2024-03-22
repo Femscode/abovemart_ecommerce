@@ -36,7 +36,7 @@
 				<div class="col-sm-6 col-lg-4">
 					<div class="card shadow h-100">
 						<!-- Image -->
-						<img src="https://learn.abovemarts.com/public/productimage/{{ $product->image}}"
+						<img src="https://shop.abovemarts.com/public/productimage/{{ $product->image}}"
 							class="h-120px card-img-top" alt="product image">
 						{{-- <img src="/productimage/{{ $product->image}}" class="h-120px card-img-top"
 							alt="course image"> --}}

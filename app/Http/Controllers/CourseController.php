@@ -583,19 +583,7 @@ class CourseController extends Controller
     {
         $product = Product::where('uid', $product_id)->first();
         $user = Auth::user();
-        if ($product->price == 0) {
-            Purchase::create([
-                'uid' => Str::uuid(),
-                'user_id' => $user->id,
-                'vendor_id' => $product->user_id,
-                'product_id' => $product->id,
-                'image' => $product->image,
-                'name' => $product->title,
-                'price' => $product->price,
-                'status' => 1,
-            ]);
-            return redirect('/dashboard')->with('message', "Purchase Successful");
-        }
+      
         // dd($course);
 
         //Here is where you charge the user for the course, create transaction for the course, after that
@@ -649,7 +637,7 @@ class CourseController extends Controller
             return redirect()->back()->with('message', "Product bought successfully!");
         } else {
 
-            return redirect()->back()->with('message', "Insufficient balance!");
+            return redirect()->back()->with('error', "Insufficient balance!");
         }
     }
 }
