@@ -163,7 +163,7 @@
 								<a class='btn btn-primary' href='tel:{{ $product->vendor->phoneNumber ?? ""}}'>Call Seller</a>
 								@if($product->status == 2)
 
-								<a href='markreceived/{{ $product->uid }}' class='btn btn-success'>Mark Received</a>
+								<a href='markreceived/{{ $product->uid }}' onclick='return confirm("Are you sure you have received this product?")' class='btn btn-success'>Mark Received</a>
 								@elseif($product->status == 3)
 								{{-- <div class='alert alert-success'>Product Received!</div> --}}
 								@else
