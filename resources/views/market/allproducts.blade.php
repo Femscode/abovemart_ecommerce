@@ -66,13 +66,13 @@
 						<div class="card-footer pt-0 pb-3">
 							<hr>
 							<div class="d-flex justify-content-between">
-								<span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>{{
-									$product->duration }}Hrs</span>
+								{{-- <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>{{
+									$product->duration }}Hrs</span> --}}
 								@if($product->price == 0)
 								<label class="btn btn-sm btn-light btn-primary-soft-check border-0 m-0"
 									for="option1">Free</label>@else
 								<label class="btn btn-sm btn-light btn-primary-soft-check border-0 m-0" for="option1">
-									${{ number_format($product->price) }} <s>${{ number_format($product->slashed_price)
+									NGN{{ number_format($product->price) }} <s>NGN{{ number_format($product->slashed_price)
 										}}</s>
 								</label>
 								@endif
@@ -81,7 +81,7 @@
 
 
 							{{-- //To be reomv later --}}
-							<a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
+							{{-- <a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a> --}}
 
 							@if(in_array($user->package, $product->packages ?? []))
 							<a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>

@@ -160,7 +160,7 @@
 							<!-- Table data -->
 							<td>
 
-								<a class='btn btn-primary' href='tel:{{ $product->vendor->phone }}'>Call Seller</a>
+								<a class='btn btn-primary' href='tel:{{ $product->vendor->phone ?? ""}}'>Call Seller</a>
 								@if($product->status == 2)
 
 								<a href='markreceived/{{ $product->uid }}' class='btn btn-success'>Mark Received</a>
