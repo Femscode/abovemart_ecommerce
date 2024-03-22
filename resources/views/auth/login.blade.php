@@ -46,7 +46,7 @@
 							{{-- <p class="mb-0 h6 fw-light">Let's learn something new today!</p> --}}
 						</div>
 						<!-- SVG Image -->
-						<img src="assets/images/ecomm.png" class="mt-5" alt="">
+						<img src="assets/images/ecomm2.jpg" class="mt-5 rounded" alt="">
 						<!-- Info -->
 						<div class="d-sm-flex mt-5 align-items-center justify-content-center">
 							<ul class="avatar-group mb-2 mb-sm-0">
@@ -56,7 +56,7 @@
 								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="assets/images/avatar/04.jpg" alt="avatar"></li>
 							</ul>
 							<!-- Content -->
-							<p class="mb-0 h6 fw-light ms-0 ms-sm-3">4k+ Students joined us, now it's your turn.</p>
+							<p class="mb-0 h6 fw-light ms-0 ms-sm-3">4k+ innovative products available!</p>
 						</div>
 					</div>
 				</div>
@@ -131,7 +131,7 @@
 
 							<!-- Sign up link -->
 							<div class="mt-4 text-center">
-								<span>Don't have an account?<a href="https://abovemarts.com/register"> Sign up here</a></span>
+								<span>Don't have an account?<a href="https://abovemarts.com/register?ref=FasanyaPelumi"> Sign up here</a></span>
 							</div>
 						</div>
 					</div>
