@@ -9,7 +9,7 @@
 	<!-- Title -->
 	<div class="row mb-3">
 		<div class="col-12 d-sm-flex justify-content-between align-items-center">
-			<h1 class="h3 mb-2 mb-sm-0">Courses</h1>
+			<h1 class="h3 mb-2 mb-sm-0">Products</h1>
 			<div>
 			<a href="#" class="btn btn-sm btn-primary mb-0" data-bs-toggle="modal"
 				data-bs-target="#addQuestion"><i class="bi bi-plus-circle me-2"></i>Add Product</a>
@@ -122,7 +122,7 @@
 								<div class="d-flex align-items-center position-relative">
 									<!-- Image -->
 									<div class="w-60px">
-										<img src="https://learn.abovemarts.com/public/courseimage/{{ $product->image}}" class="rounded" alt="">
+										<img src="https://shop.abovemarts.com/public/courseimage/{{ $product->image}}" class="rounded" alt="">
 										{{-- <img src="/courseimage/{{ $product->image}}" class="rounded" alt=""> --}}
 									</div>
 									<!-- Title -->
@@ -161,7 +161,7 @@
 								<label class="btn-primary-soft-check border-0 m-0"
 								for="option1">Free</label>
 								@else 
-								${{ number_format($product->price) }} <s>${{ number_format($product->slashed_price) }}</s>
+								NGN{{ number_format($product->price) }} <s>NGN{{ number_format($product->slashed_price) }}</s>
 								@endif
 							</td>
 
