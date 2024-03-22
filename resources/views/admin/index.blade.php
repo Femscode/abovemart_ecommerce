@@ -32,7 +32,7 @@
 
 		<!-- Course item -->
 		<div class="col-sm-6 col-lg-4">
-			<a href='/announcement'>
+			<a href='/boughtproducts'>
 			<div class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3">
 				<h6>Bought Products</h6>
 				<h2 class="mb-0 fs-1 text-success">{{ count($boughtproducts) }}</h2>
@@ -122,12 +122,12 @@
 								<div class="d-flex align-items-center position-relative">
 									<!-- Image -->
 									<div class="w-60px">
-										<img src="https://shop.abovemarts.com/public/courseimage/{{ $product->image}}" class="rounded" alt="">
+										<img src="https://shop.abovemarts.com/public/productimage/{{ $product->image}}" class="rounded" alt="">
 										{{-- <img src="/courseimage/{{ $product->image}}" class="rounded" alt=""> --}}
 									</div>
 									<!-- Title -->
 									<h6 class="mb-0 ms-2">
-										<a href="#" class="stretched-link">{{ $product->title }} ({{ $product->course_code }})</a>
+										<a href="#" class="stretched-link">{{ $product->title }}</a>
 									</h6>
 								</div>
 							</td>

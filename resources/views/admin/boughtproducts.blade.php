@@ -55,7 +55,7 @@
                             </td>
                             <td>{{ $product->name }}</td>
                             <td>
-                                {{ $product->user->name ?? "Not Added" }}<br>
+                                {{ $product->user->firstName ?? "Not Added" }} - {{ $product->user->lastName ?? "" }}<br>
                                 <i>{{ $product->user->email ?? "Not Added" }}</i><br>
                             
                             </td>
@@ -79,7 +79,7 @@
 
                             <td>
                               
-                                <a href='tel:{{ $product->user->phone }}' class='btn btn-sm btn-primary-soft'>Call Buyer</a>
+                                <a href='tel:{{ $product->user->phoneNumber }}' class='btn btn-sm btn-primary-soft'>Call Buyer</a>
                                 @if($product->status == 1)
                                 <a href='marksent/{{ $product->uid }}' class='btn btn-sm btn-primary'>Mark Sent</a>
                                 @endif
