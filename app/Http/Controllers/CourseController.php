@@ -22,8 +22,9 @@ class CourseController extends Controller
     {
         $data['ann'] = Announcement::latest()->get();     
         $data['user'] = $user = Auth::user();
-        $data['courses'] = Product::where('user_id', $user->id)->latest()->get();
-
+        $data['products'] = Product::where('user_id', $user->id)->latest()->get();
+        $data['boughtproducts'] = Purchase::where('vendor_id',$user->id)->get();
+        $data['categories'] = ProductCategory::where('user_id',$user->id)->get();
         if (Auth::user()->type == 1) {
 
             return view('admin.index', $data);
