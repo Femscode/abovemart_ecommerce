@@ -508,21 +508,21 @@ class CourseController extends Controller
             "updated_at" => date('Y-m-d H:i:s'),
         ]);
 
-        // DB::table('transactions')->insert([
-        //     'transactionId' => $this->randomDigit(),
-        //     'userId' => $user->userId,
-        //     'username' => $user->username,
-        //     'email' => $user->email,
-        //     'phoneNumber' => $user->phoneNumber,
-        //     'amount' => $purchase->price,
-        //     'transactionType' => 'Deposit',
-        //     'transactionService' => 'Funding Wallet',
-        //     'status' => 'PENDING',
-        //     'paymentMethod' => 'Admin',
-        //     'Admin' => 'None',
-        //     "created_at" => date('Y-m-d H:i:s'),
-        //     "updated_at" => date('Y-m-d H:i:s'),
-        // ]);
+        DB::table('transactions')->insert([
+            'transactionId' => $this->randomDigit(),
+            'userId' => $user->userId,
+            'username' => $user->username,
+            'email' => $user->email,
+            'phoneNumber' => $user->phoneNumber,
+            'amount' => $purchase->price,
+            'transactionType' => 'Deposit',
+            'transactionService' => 'Product Refund',
+            'status' => 'PENDING',
+            'paymentMethod' => 'Admin',
+            'Admin' => 'None',
+            "created_at" => date('Y-m-d H:i:s'),
+            "updated_at" => date('Y-m-d H:i:s'),
+        ]);
 
        
         $purchase->status = 4;
