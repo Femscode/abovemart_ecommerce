@@ -514,7 +514,7 @@ class CourseController extends Controller
             'username' => $user->username,
             'email' => $user->email,
             'phoneNumber' => $user->phoneNumber,
-            'amount' => $purchase->amount,
+            'amount' => $purchase->price,
             'transactionType' => 'Deposit',
             'transactionService' => 'Funding Wallet',
             'status' => 'PENDING',
