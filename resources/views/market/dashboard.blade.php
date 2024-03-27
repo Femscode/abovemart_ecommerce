@@ -150,6 +150,9 @@
 								@elseif($product->status == 3)
 								<div class='alert-sm alert alert-success'>Product Received!</div>
 								
+								@elseif($product->status == 4)
+								<div class='alert-sm alert alert-success'>Money Refunded!</div>
+								
 								@else
 								<div class='alert-sm alert alert-warning'>Product Yet To Be Paid For!</div>
 

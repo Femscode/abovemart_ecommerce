@@ -487,6 +487,48 @@ class CourseController extends Controller
         $purchase->save();
         return redirect()->back()->with('message', "Product Marked Received!");
     }
+    public function markrefund($id) {
+        $purchase = Purchase::where('uid',$id)->firstOrFail();
+      
+        $user = User::find($purchase->user_id);
+      
+        DB::table('funds')->insert([
+            'transactionId' => $this->randomDigit(),
+            'userId' => $user->userId,
+            'name' => $user->username,
+            'email' => $user->email,
+            'amount' => $purchase->price,
+            'status' => 'PENDING',
+            'paymentType' => 'Admin',
+            'accountName' => 'Admin',
+            'accountNumber' => 'Admin',
+            'bankName' => 'Admin',
+            'Admin' => Auth::guard('admin')->user()->username,
+            "created_at" => date('Y-m-d H:i:s'),
+            "updated_at" => date('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('transactions')->insert([
+            'transactionId' => $this->randomDigit(),
+            'userId' => $user->userId,
+            'username' => $user->username,
+            'email' => $user->email,
+            'phoneNumber' => $user->phoneNumber,
+            'amount' => $purchase->amount,
+            'transactionType' => 'Deposit',
+            'transactionService' => 'Funding Wallet',
+            'status' => 'PENDING',
+            'paymentMethod' => 'Admin',
+            'Admin' => Auth::guard('admin')->user()->username,
+            "created_at" => date('Y-m-d H:i:s'),
+            "updated_at" => date('Y-m-d H:i:s'),
+        ]);
+
+       
+        $purchase->status = 4;
+        $purchase->save();
+        return redirect()->back()->with('message', "Product Has Been Refunded!");
+    }
     public function loadsection(Request $request)
     {
         $id = $request->id;

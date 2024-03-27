@@ -69,6 +69,7 @@ Route::any('/announcement', [App\Http\Controllers\CourseController::class, 'ann'
 Route::any('/boughtproducts', [App\Http\Controllers\CourseController::class, 'boughtproducts'])->name('boughtproducts');
 Route::any('/marksent/{id}', [App\Http\Controllers\CourseController::class, 'marksent'])->name('marksent');
 Route::any('/markreceived/{id}', [App\Http\Controllers\CourseController::class, 'markreceived'])->name('markreceived');
+Route::any('/markrefund/{id}', [App\Http\Controllers\CourseController::class, 'markrefund'])->name('markrefund');
 Route::any('/loadann', [App\Http\Controllers\CourseController::class, 'loadann'])->name('loadann');
 Route::any('/editann', [App\Http\Controllers\CourseController::class, 'editann'])->name('editann');
 Route::any('/deleteann', [App\Http\Controllers\CourseController::class, 'deleteann'])->name('deleteann');

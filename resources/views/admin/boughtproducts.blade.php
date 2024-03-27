@@ -81,7 +81,9 @@
                               
                                 <a href='tel:{{ $product->user->phoneNumber }}' class='btn btn-sm btn-primary-soft'>Call Buyer</a>
                                 @if($product->status == 1)
-                                <a onclick='return confirm("Are you sure you want to mark this product sent?")' href='marksent/{{ $product->uid }}' class='btn btn-sm btn-primary'>Mark Sent</a>
+                                <a onclick='return confirm("Are you sure you want to mark this product sent?")' href='marksent/{{ $product->uid }}' class='btn btn-sm btn-primary'>Mark Shipped</a>
+                                <a onclick='return confirm("Are you sure you want to mark this product sent?")' href='markreceived/{{ $product->uid }}' class='btn btn-sm btn-info'>Mark Received</a>
+                                <a onclick='return confirm("Are you sure you want to refund this user?")' href='markrefund/{{ $product->uid }}' class='btn btn-sm btn-danger'>Refund User</a>
                                 @endif
                            
                               
