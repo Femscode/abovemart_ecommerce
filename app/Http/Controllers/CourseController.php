@@ -498,7 +498,7 @@ class CourseController extends Controller
             'name' => $user->username,
             'email' => $user->email,
             'amount' => $purchase->price,
-            'status' => 'CONFIRM',
+            'status' => 'success',
             'paymentType' => 'Admin',
             'accountName' => 'Admin',
             'accountNumber' => 'Admin',
