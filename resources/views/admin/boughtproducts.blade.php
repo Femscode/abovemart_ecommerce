@@ -53,7 +53,7 @@
 
                               
                             </td>
-                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->name }}<br>NGN{{ $product->price  }}</td>
                             <td>
                                 {{ $product->user->firstName ?? "Not Added" }} - {{ $product->user->lastName ?? "" }}<br>
                                 <i>{{ $product->user->email ?? "Not Added" }}</i><br>
