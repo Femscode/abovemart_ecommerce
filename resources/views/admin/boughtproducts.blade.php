@@ -64,7 +64,7 @@
 								@if($product->status == 1)
 								<div class='bg bg-primary p-1 text-white rounded'>Payment Confirmed!</div>
 								@elseif($product->status == 2)
-								<div class='bg bg-warning p-1 rounded'>Product Sent!</div>
+								<div class='bg bg-warning p-1 rounded'>Product Shipped!</div>
 								
 								@elseif($product->status == 3)
 								<div class='bg bg-success p-1 rounded'>Product Received!</div>
@@ -84,6 +84,15 @@
                                 <a onclick='return confirm("Are you sure you want to mark this product sent?")' href='marksent/{{ $product->uid }}' class='btn btn-sm btn-primary'>Mark Shipped</a>
                                 <a onclick='return confirm("Are you sure you want to mark this product sent?")' href='markreceived/{{ $product->uid }}' class='btn btn-sm btn-info'>Mark Received</a>
                                 <a onclick='return confirm("Are you sure you want to refund this user?")' href='markrefund/{{ $product->uid }}' class='btn btn-sm btn-danger'>Refund User</a>
+                                @elseif($product->status == 2)
+                                <a onclick='return confirm("Are you sure you want to mark this product sent?")' href='markreceived/{{ $product->uid }}' class='btn btn-sm btn-info'>Mark Received</a>
+                                <a onclick='return confirm("Are you sure you want to refund this user?")' href='markrefund/{{ $product->uid }}' class='btn btn-sm btn-danger'>Refund User</a>
+                                
+                                @elseif($product->status == 3)
+                                <a onclick='return confirm("Are you sure you want to mark this product sent?")' href='markreceived/{{ $product->uid }}' class='btn btn-sm btn-info'>Mark Received</a>
+                                <a onclick='return confirm("Are you sure you want to refund this user?")' href='markrefund/{{ $product->uid }}' class='btn btn-sm btn-danger'>Refund User</a>
+
+
                                 @endif
                            
                               

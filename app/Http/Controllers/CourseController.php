@@ -503,7 +503,7 @@ class CourseController extends Controller
             'accountName' => 'Admin',
             'accountNumber' => 'Admin',
             'bankName' => 'Admin',
-            'Admin' => Auth::guard('admin')->user()->username,
+            'Admin' => 'None',
             "created_at" => date('Y-m-d H:i:s'),
             "updated_at" => date('Y-m-d H:i:s'),
         ]);
@@ -519,7 +519,7 @@ class CourseController extends Controller
             'transactionService' => 'Funding Wallet',
             'status' => 'PENDING',
             'paymentMethod' => 'Admin',
-            'Admin' => Auth::guard('admin')->user()->username,
+            'Admin' => 'None',
             "created_at" => date('Y-m-d H:i:s'),
             "updated_at" => date('Y-m-d H:i:s'),
         ]);

@@ -145,7 +145,7 @@
 								@if($product->status == 1)
 								<div class='alert-sm alert alert-primary'>Payment Confirmed!</div>
 								@elseif($product->status == 2)
-								<div class='alert-sm alert alert-warning'>Product Sent!</div>
+								<div class='alert-sm alert alert-warning'>Product Shipped!</div>
 								
 								@elseif($product->status == 3)
 								<div class='alert-sm alert alert-success'>Product Received!</div>
