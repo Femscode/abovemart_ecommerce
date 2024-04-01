@@ -67,39 +67,11 @@
 						<!-- Nav item 1 Demos -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="demoMenu" data-bs-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">E-Courses</a>
+								aria-haspopup="true" aria-expanded="false">Large Market</a>
 							<ul class="dropdown-menu" aria-labelledby="demoMenu">
-								<li> <a class="dropdown-item" href="#">Digital Skills</a></li>
-								<li> <a class="dropdown-item" href="#">Professional Courses</a></li>
-								<li> <a class="dropdown-item" href="#"></a></li>
+								<li> <a class="dropdown-item" href="/allproducts">All Products</a></li>
+							
 
-								<li>
-									<hr class="dropdown-divider">
-								</li>
-								<li> <a class="dropdown-item" href="#">Vocational Skills</a></li>
-								<li> <a class="dropdown-item" href="#">Agroallied Skills</a></li>
-
-
-								<li>
-									<hr class="dropdown-divider">
-								</li>
-
-							</ul>
-						</li>
-
-						<!-- Nav item 2 Pages -->
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">E-Libraries</a>
-							<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-								<!-- Dropdown submenu -->
-								<li> <a class="dropdown-item" href="/allebooks">E-books</a></li>
-
-
-								<li>
-									<hr class="dropdown-divider">
-								</li>
-								<li> <a class="dropdown-item" href="#">Video Contents</a></li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
@@ -115,13 +87,10 @@
 								<!-- Dropdown submenu -->
 
 
-								<li> <a class="dropdown-item" href="#"><i class="fas fa-book fa-fw me-1"></i>Enrolled
-										Courses</a> </li>
+								<li> <a class="dropdown-item" href="#"><i class="fas fa-book fa-fw me-1"></i>Bought Products</a> </li>
 								<li> <a class="dropdown-item" href="#"><i
-											class="fas fa-pen fa-fw me-1"></i>Assignments</a> </li>
-								<li> <a class="dropdown-item" href="#"><i
-											class="fas fa-clock fa-fw me-1"></i>Announcements & Schedules</a> </li>
-								<li>
+											class="fas fa-pen fa-fw me-1"></i>Wishlist</a> </li>
+							
 									<hr class="dropdown-divider">
 								</li>
 							</ul>

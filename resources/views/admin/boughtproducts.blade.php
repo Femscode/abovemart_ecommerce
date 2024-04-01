@@ -79,6 +79,7 @@
 
                             <td>
                               
+                                <a href='/moreinfo/{{ $product->uid }}' class='btn btn-sm btn-info-soft'>More Info</a>
                                 <a href='tel:{{ $product->user->phoneNumber }}' class='btn btn-sm btn-primary-soft'>Call Buyer</a>
                                 @if($product->status == 1)
                                 <a onclick='return confirm("Are you sure you want to mark this product sent?")' href='marksent/{{ $product->uid }}' class='btn btn-sm btn-primary'>Mark Shipped</a>

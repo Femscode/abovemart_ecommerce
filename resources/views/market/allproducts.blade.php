@@ -81,10 +81,10 @@
 
 
 							{{-- //To be reomv later --}}
-							{{-- <a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a> --}}
-
+							
 							@if(in_array($user->package, $product->packages ?? []))
-							<a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
+							<a href='/deliverydetails/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
+							{{-- <a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a> --}}
 
 							@else
 

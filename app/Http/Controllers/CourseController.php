@@ -20,11 +20,11 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $data['ann'] = Announcement::latest()->get();     
+        $data['ann'] = Announcement::latest()->get();
         $data['user'] = $user = Auth::user();
         $data['products'] = Product::where('user_id', $user->id)->latest()->get();
-        $data['boughtproducts'] = Purchase::where('vendor_id',$user->id)->get();
-        $data['categories'] = ProductCategory::where('user_id',$user->id)->get();
+        $data['boughtproducts'] = Purchase::where('vendor_id', $user->id)->get();
+        $data['categories'] = ProductCategory::where('user_id', $user->id)->get();
         if (Auth::user()->type == 1) {
 
             return view('admin.index', $data);
@@ -38,11 +38,12 @@ class CourseController extends Controller
         return $sections;
     }
 
-    public function boughtproducts() {
+    public function boughtproducts()
+    {
         $data['user'] = $user = Auth::user();
-        $data['categories'] = ProductCategory::where('user_id',$user->id)->get();
-        $data['products'] = Purchase::where('vendor_id',$user->id)->get();
-        return view('admin.boughtproducts',$data);
+        $data['categories'] = ProductCategory::where('user_id', $user->id)->get();
+        $data['products'] = Purchase::where('vendor_id', $user->id)->latest()->get();
+        return view('admin.boughtproducts', $data);
     }
     public function profile()
     {
@@ -52,7 +53,7 @@ class CourseController extends Controller
     {
         $data['courses'] = Product::latest()->get();
         $data['ann'] = Announcement::latest()->get();
-      
+
         if (Auth::user()->type == 1) {
 
             return view('courses.course', $data);
@@ -64,8 +65,8 @@ class CourseController extends Controller
     {
         $data['user'] = $user = Auth::user();
         $data['products'] = Product::where('user_id', $user->id)->latest()->get();
-        $data['allproducts'] = Product::latest()->get();       
-        $data['boughtproducts'] = Purchase::where('vendor_id',$user->id)->get();
+        $data['allproducts'] = Product::latest()->get();
+        $data['boughtproducts'] = Purchase::where('vendor_id', $user->id)->get();
         $data['ann'] = Announcement::where('user_id', $user->id)->latest()->get();
         $data['categories'] = ProductCategory::orderBy('name')->get();
 
@@ -154,8 +155,8 @@ class CourseController extends Controller
         $data['user'] = $user = Auth::user();
         $data['products'] = Product::latest()->get();
         $data['allproducts'] = Product::latest()->get();
-        $data['boughtproducts'] = Purchase::where('user_id',$user->id)->get();
-       
+        $data['boughtproducts'] = Purchase::where('user_id', $user->id)->latest()->get();
+
         $data['ann'] = Announcement::latest()->get();
         $data['categories'] = ProductCategory::orderBy('name')->get();
         $data['status'] = $status = [];
@@ -172,7 +173,7 @@ class CourseController extends Controller
 
         $data['balance'] = $walletamount - $expenses;
 
-       
+
         return view('market.dashboard', $data);
     }
 
@@ -395,7 +396,7 @@ class CourseController extends Controller
         $data['courses'] = Product::latest()->get();
         return view('ass.index', $data);
     }
-  
+
     public function courseindex()
     {
         // dd('here');
@@ -413,7 +414,7 @@ class CourseController extends Controller
 
 
         $data['product'] = $course = Product::where('uid', $id)->firstOrFail();
-      
+
 
         return view('market.course_preview', $data);
     }
@@ -431,7 +432,7 @@ class CourseController extends Controller
         $course = Product::create([
             'uid' => Str::uuid(),
             'user_id' => $user->id,
-            'title' => $request->title,          
+            'title' => $request->title,
             'description' => $request->description,
             'duration' => $request->duration,
             'price' => $request->price,
@@ -462,9 +463,9 @@ class CourseController extends Controller
             $course->image = $imageName;
         }
         $course->title = $request->title;
-       
+
         $course->description = $request->description;
-      
+
         $course->price = $request->price;
         $course->slashed_price = $request->slashed_price;
         $course->category = $request->category;
@@ -475,23 +476,26 @@ class CourseController extends Controller
 
         return $course;
     }
-    public function marksent($id) {
-        $purchase = Purchase::where('uid',$id)->firstOrFail();
+    public function marksent($id)
+    {
+        $purchase = Purchase::where('uid', $id)->firstOrFail();
         $purchase->status = 2;
         $purchase->save();
         return redirect()->back()->with('message', "Product Status Updated Successfully!");
     }
-    public function markreceived($id) {
-        $purchase = Purchase::where('uid',$id)->firstOrFail();
+    public function markreceived($id)
+    {
+        $purchase = Purchase::where('uid', $id)->firstOrFail();
         $purchase->status = 3;
         $purchase->save();
         return redirect()->back()->with('message', "Product Marked Received!");
     }
-    public function markrefund($id) {
-        $purchase = Purchase::where('uid',$id)->firstOrFail();
-      
+    public function markrefund($id)
+    {
+        $purchase = Purchase::where('uid', $id)->firstOrFail();
+
         $user = User::find($purchase->user_id);
-      
+
         DB::table('funds')->insert([
             'transactionId' => $this->randomDigit(),
             'userId' => $user->userId,
@@ -499,7 +503,7 @@ class CourseController extends Controller
             'email' => $user->email,
             'amount' => $purchase->price,
             'status' => 'success',
-            'paymentType' => 'Admin',
+            'paymentType' => 'Product Refund',
             'accountName' => 'Admin',
             'accountNumber' => 'Admin',
             'bankName' => 'Admin',
@@ -524,7 +528,7 @@ class CourseController extends Controller
             "updated_at" => date('Y-m-d H:i:s'),
         ]);
 
-       
+
         $purchase->status = 4;
         $purchase->save();
         return redirect()->back()->with('message', "Product Has Been Refunded!");
@@ -622,11 +626,12 @@ class CourseController extends Controller
         return $pass;
     }
 
-    public function buyproduct($product_id)
+    public function buyproduct(Request $request)
     {
-        $product = Product::where('uid', $product_id)->first();
+       
+        $product = Product::where('uid', $request->product_id)->first();
         $user = Auth::user();
-      
+
         // dd($course);
 
         //Here is where you charge the user for the course, create transaction for the course, after that
@@ -644,12 +649,15 @@ class CourseController extends Controller
             ->where('sponsor', $user->mySponsorId)
             ->sum('amount');
         $balance = $capital + 0 - $expenses;
-        
+
         // $balance = 5000;
+        $realprice =  $product->price *  $request->quantity;
+      
         if ($balance >= $product->price) {
 
             $transactionId = $this->randomDigit();
             $transactionServiceId = $this->randomDigit();
+            // dd($request->all());
 
             DB::table('transactions')->insert([
                 'transactionId' => $transactionId,
@@ -657,7 +665,7 @@ class CourseController extends Controller
                 'username' => $user->username,
                 'email' => $user->email,
                 'phoneNumber' => $user->phoneNumber,
-                'amount' => $product->price,
+                'amount' =>  $realprice,
                 'transactionType' => 'Product Purchase',
                 'transactionService' => 'Product Purchase',
                 'status' => 'CONFIRM',
@@ -666,7 +674,7 @@ class CourseController extends Controller
                 "created_at" => date('Y-m-d H:i:s'),
                 "updated_at" => date('Y-m-d H:i:s'),
             ]);
-           
+
             Purchase::create([
                 'uid' => Str::uuid(),
                 'user_id' => $user->id,
@@ -674,13 +682,36 @@ class CourseController extends Controller
                 'product_id' => $product->id,
                 'image' => $product->image,
                 'name' => $product->title,
-                'price' => $product->price,
+                'price' =>  $realprice,
                 'status' => 1,
+                'username' => $request->name,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'state' => $request->state,
+                'country' => $request->country,
+                'quantity' => $request->quantity,
+                'info' => $request->info,
+                
             ]);
-            return redirect()->back()->with('message', "Product bought successfully!");
+            return redirect()->route('allproducts')->with('message', "Product bought successfully!");
         } else {
 
             return redirect()->back()->with('error', "Insufficient balance!");
         }
+    }
+    public function deliverydetails($product_id)
+    {
+        $data['product'] = $product = Product::where('uid', $product_id)->first();
+        $data['user'] =  $user = Auth::user();
+
+        return view('market.delivery', $data);
+    }
+    public function moreinfo($product_id)
+    {
+        $data['purchase'] = $product = Purchase::where('uid', $product_id)->first();
+    //   dd($product);
+        $data['user'] =  $user = Auth::user();
+
+        return view('market.moreinfo', $data);
     }
 }

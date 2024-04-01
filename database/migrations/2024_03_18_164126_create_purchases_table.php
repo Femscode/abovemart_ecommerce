@@ -23,6 +23,13 @@ class CreatePurchasesTable extends Migration
             $table->string('name')->nullable();
             $table->string('uid')->nullable();
             $table->string('image')->nullable();
+            $table->string('username')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+            $table->string('info')->nullable();
+            $table->integer('quantity')->nullable();
             
             $table->timestamps();
         });

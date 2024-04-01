@@ -41,7 +41,10 @@ Route::any('/deletesectionvideo', [App\Http\Controllers\CourseController::class,
 Route::any('/deletesection/{id}', [App\Http\Controllers\CourseController::class, 'deletesection'])->name('deletesection');
 
 //route for course enrollment
+Route::any('/deliverydetails/{product_id}', [App\Http\Controllers\CourseController::class, 'deliverydetails'])->name('deliverydetails');
 Route::any('/buyproduct/{product_id}', [App\Http\Controllers\CourseController::class, 'buyproduct'])->name('buyproduct');
+Route::any('/moreinfo/{product_id}', [App\Http\Controllers\CourseController::class, 'moreinfo'])->name('moreinfo');
+Route::any('/buyproduct', [App\Http\Controllers\CourseController::class, 'buyproduct'])->name('buyproduct');
 Route::any('/lesson/{product_id}', [App\Http\Controllers\CourseController::class, 'lesson'])->name('lesson');
 Route::any('/markdone/{product_id}', [App\Http\Controllers\CourseController::class, 'markdone'])->name('markdone');
 Route::any('/students/{product_id}', [App\Http\Controllers\CourseController::class, 'students'])->name('students');
