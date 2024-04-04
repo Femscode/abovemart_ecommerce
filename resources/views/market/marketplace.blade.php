@@ -287,7 +287,7 @@ Page content START -->
                                         <!-- Title -->
                                         <h5 class="card-title fw-normal"><a href="/preview_course/{{ $product->uid }}">{{
                                             $product->title }}</a></h5>
-                                       <p class="mb-2 text-truncate-2">{!! Str::limit($product->description,50) !!}</p>
+                                       <p class="mb-2 text-truncate-2">{!! $product->description !!}</p>
                                        <!-- Rating star -->
                                      
                                     </div>
@@ -312,7 +312,7 @@ Page content START -->
                                         {{-- //To be reomv later --}}
                                         
                                       
-                                        <a href='/allproducts' class='btn btn-success btn-sm'>Buy Now</a>
+                                        <a  href='/preview_product/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
                                         {{-- <a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a> --}}
             
                                       

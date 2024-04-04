@@ -50,7 +50,7 @@
 							<!-- Title -->
 							<h5 class="card-title fw-normal"><a href="/preview_course/{{ $product->uid }}">{{
 									$product->title }}</a></h5>
-							<p class="mb-2 text-truncate-2">{!! Str::limit($product->description,50) !!}</p>
+							<p class="mb-2 text-truncate-2">{!! $product->description !!}</p>
 							<!-- Rating star -->
 							{{-- <ul class="list-inline mb-0">
 								<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
