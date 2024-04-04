@@ -80,7 +80,7 @@
 							<ul class="nav collapse flex-column" id="collapsepage" data-bs-parent="#navbar-sidebar">
 								<li class="nav-item"> <a class="nav-link active" href="/dashboard">All
 										Products</a></li>
-								<li class="nav-item"> <a class="nav-link" href="/course_categories">Product
+								<li class="nav-item"> <a class="nav-link" href="/categories">Product
 										Category</a></li>
 								{{-- <li class="nav-item"> <a class="nav-link" href="/announcement">Announcements</a>
 								</li> --}}
@@ -352,7 +352,7 @@
 									<div class="col-12 mt-3 mb-6">
 										<label class="form-label">Description</label>
 										<div id='description' name='description' required class="editor form-control"
-											rows="4" placeholder="Input course description" spellcheck="false"></div>
+											rows="4" placeholder="Input product description" spellcheck="false"></div>
 									</div>
 
 
@@ -361,13 +361,13 @@
 									<div class="col-6">
 										<label class="form-label">Price(NGN)</label>
 										<input id='price' name='price' required class="form-control" type="text"
-											placeholder="Enter 0 if the course is free">
+											placeholder="Enter 0 if the product is free">
 									</div>
 
 									<div class="col-6">
 										<label class="form-label">Slashed <s>Price</s> (NGN)</label>
 										<input id='slashed_price' name='slashed_price' required class="form-control"
-											type="text" placeholder="Enter 0 if the course is free">
+											type="text" placeholder="Enter 0 if the product is free">
 									</div>
 									<div class="col-12">
 										<label class="form-label">Product Access</label><br>
@@ -383,7 +383,7 @@
 										<label class="form-label">Product Display Image</label>
 
 										<input id='image' name='image' required class="form-control" type="file"
-											accept="image/*" placeholder="Input course title">
+											accept="image/*" placeholder="Input product title">
 									</div>
 
 
@@ -417,7 +417,7 @@
 									<label class="form-label">Name</label>
 									<input type='hidden' id='course_id' />
 									<input id='edittitle' required class="form-control" type="text"
-										placeholder="Input course title">
+										placeholder="Input product name">
 								</div>
 							
 
@@ -434,7 +434,7 @@
 								<div class="col-12 mt-3 mb-6">
 									<label class="form-label">Description</label>
 									<div id='editdescription' required class="editoredit form-control" rows="4"
-										placeholder="Input course description" spellcheck="false"></div>
+										placeholder="Input product description" spellcheck="false"></div>
 								</div>
 
 
@@ -443,12 +443,12 @@
 								<div class="col-6">
 									<label class="form-label">Price(NGN)</label>
 									<input id='editprice' required class="form-control" type="text"
-										placeholder="Enter 0 is the course is free">
+										placeholder="Enter 0 is the product is free">
 								</div>
 								<div class="col-6">
 									<label class="form-label">Slashed <s>Price(NGN)</s></label>
 									<input id='editslashedprice' required class="form-control" type="text"
-										placeholder="Enter 0 is the course is free">
+										placeholder="Enter 0 is the product is free">
 								</div>
 								<div class="col-12">
 									<label class="form-label">Product Access</label><br>
@@ -470,7 +470,7 @@
 											alt="">
 									</div>
 									<input id='editimage' class="form-control" type="file" accept="image/*"
-										placeholder="Input course title">
+										placeholder="Input product title">
 								</div>
 						</div>
 						<div class="modal-footer">
@@ -548,7 +548,7 @@
 							
 							$("#editpackagelist").html(data.packages)
 						
-							$("#editProduct_img").attr('src','https://shop.abovemarts.com/public/courseimage/'+data.image+'')
+							$("#editProduct_img").attr('src','https://shop.abovemarts.com/public/productimage/'+data.image+'')
 						
 						})
 					})
@@ -595,7 +595,7 @@
                                 },
                                 error: function(data) {
                                     console.log(data);
-                                    swal("Oops!", 'Course not created', 'error');
+                                    swal("Oops!", 'Product not created', 'error');
                                 }
                             });
                             });

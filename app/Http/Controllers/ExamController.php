@@ -465,6 +465,12 @@ class ExamController extends Controller
 
         return redirect()->back()->with('message', 'Category Addeed Successfully!');
     }
+    public function marketplace() {
+        $data['categories'] = ProductCategory::latest()->get();
+        $data['products'] = Product::latest()->get();
+
+        return view('market.marketplace', $data);
+    }
 
     public function delete_category(Request $request)
     {
