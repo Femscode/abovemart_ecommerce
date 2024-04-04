@@ -594,14 +594,16 @@ Page content START -->
                                                         <div class="mt-3 d-grid">
                                                             @if(Auth::check())
 
-                                                            @if(Auth::user()->package == "Basic" || Auth::user()->package == "Bronze"
-                                                            )
-                                                            <a href='https://abovemarts.com/userpackages'
-                                                                class='btn btn-success btn-sm'>Upgrade To Access</a>
+                                                            @if(in_array(Auth::user()->package, $product->packages ?? []))
+                                                            
+                                                            <a href='/deliverydetails/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
+							
+                                                          
                                                             @else
-                                                            {{-- <a href='/enroll/{{ $product->uid }}' --}}
-                                                            <a href='https://shop.abovemarts.com/allproducts'
-                                                                class='btn btn-success btn-sm'>Buy Now</a>
+                                                            <a href='https://abovemarts.com/userpackages'
+                                                            class='btn btn-success btn-sm'>Upgrade To Access</a>
+                                                           
+                                                           
                                                                 @endif
                                                                 @else 
                                                                 <a href='https://shop.abovemarts.com/allproducts'
