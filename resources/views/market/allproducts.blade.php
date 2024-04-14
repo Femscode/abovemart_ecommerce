@@ -50,7 +50,7 @@
 							<!-- Title -->
 							<h5 class="card-title fw-normal"><a href="/preview_course/{{ $product->uid }}">{{
 									$product->title }}</a></h5>
-							<p class="mb-2 text-truncate-2">{!! $product->description !!}</p>
+							<p class="mb-2 text-truncate-2">{!! Str_limit($product->description,100) !!}</p>
 							<!-- Rating star -->
 							{{-- <ul class="list-inline mb-0">
 								<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
@@ -81,6 +81,7 @@
 
 
 							{{-- //To be reomv later --}}
+							<a href='/preview_product/{{ $product->uid }}' class='btn btn-info btn-sm'>Preview</a>
 							
 							@if(in_array($user->package, $product->packages ?? []))
 							<a href='/deliverydetails/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>

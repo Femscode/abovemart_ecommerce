@@ -24,6 +24,7 @@ Route::any('run_uid', function() {
 // Route::any('/', [App\Http\Controllers\CourseController::class, 'homepage'])->name('homepage');
 Route::any('/', [App\Http\Controllers\CourseController::class, 'index'])->name('index')->middleware('auth');
 Route::any('/dashboard', [App\Http\Controllers\CourseController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::any('/admin', [App\Http\Controllers\CourseController::class, 'admin'])->name('admin')->middleware('auth');
 Route::any('/admin_access', [App\Http\Controllers\CourseController::class, 'admin_access'])->name('admin_access')->middleware('auth');
 Route::any('/assignadmin', [App\Http\Controllers\CourseController::class, 'assignadmin'])->name('assignadmin')->middleware('auth');
 Route::any('/deleteAccess/{id}', [App\Http\Controllers\CourseController::class, 'deleteAccess'])->name('deleteAccess')->middleware('auth');
@@ -71,6 +72,7 @@ Route::any('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->n
 Route::any('/createann', [App\Http\Controllers\CourseController::class, 'createann'])->name('createann');
 Route::any('/announcement', [App\Http\Controllers\CourseController::class, 'ann'])->name('annindex');
 Route::any('/boughtproducts', [App\Http\Controllers\CourseController::class, 'boughtproducts'])->name('boughtproducts');
+Route::any('/adminboughtproducts', [App\Http\Controllers\CourseController::class, 'adminboughtproducts'])->name('adminboughtproducts');
 Route::any('/marksent/{id}', [App\Http\Controllers\CourseController::class, 'marksent'])->name('marksent');
 Route::any('/markreceived/{id}', [App\Http\Controllers\CourseController::class, 'markreceived'])->name('markreceived');
 Route::any('/markrefund/{id}', [App\Http\Controllers\CourseController::class, 'markrefund'])->name('markrefund');

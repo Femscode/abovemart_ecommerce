@@ -22,9 +22,11 @@ class CourseController extends Controller
     {
         $data['ann'] = Announcement::latest()->get();
         $data['user'] = $user = Auth::user();
-        $data['products'] = Product::where('user_id', $user->id)->latest()->get();
-        $data['boughtproducts'] = Purchase::where('vendor_id', $user->id)->get();
-        $data['categories'] = ProductCategory::where('user_id', $user->id)->get();
+        // $data['products'] = Product::where('user_id', $user->id)->latest()->get();
+        $data['products'] = Product::latest()->get();
+        // $data['boughtproducts'] = Purchase::where('vendor_id', $user->id)->get();
+        $data['boughtproducts'] = Purchase::get();
+        $data['categories'] = ProductCategory::get();
         if (Auth::user()->type == 1) {
 
             return view('admin.index', $data);
@@ -43,6 +45,17 @@ class CourseController extends Controller
         $data['user'] = $user = Auth::user();
         $data['categories'] = ProductCategory::where('user_id', $user->id)->get();
         $data['products'] = Purchase::where('vendor_id', $user->id)->latest()->get();
+        $data['categories'] = ProductCategory::get();
+        $data['products'] = Purchase::latest()->get();
+        return view('admin.boughtproducts', $data);
+    }
+    public function adminboughtproducts()
+    {
+        $data['user'] = $user = Auth::user();
+        $data['categories'] = ProductCategory::where('user_id', $user->id)->get();
+        $data['products'] = Purchase::where('vendor_id', $user->id)->latest()->get();
+        // $data['categories'] = ProductCategory::get();
+        // $data['products'] = Purchase::latest()->get();
         return view('admin.boughtproducts', $data);
     }
     public function profile()
@@ -63,16 +76,37 @@ class CourseController extends Controller
     }
     public function dashboard()
     {
+        
         $data['user'] = $user = Auth::user();
         $data['products'] = Product::where('user_id', $user->id)->latest()->get();
+        // $data['products'] = Product::latest()->get();
         $data['allproducts'] = Product::latest()->get();
         $data['boughtproducts'] = Purchase::where('vendor_id', $user->id)->get();
-        $data['ann'] = Announcement::where('user_id', $user->id)->latest()->get();
+        $data['ann'] = Announcement::latest()->get();
         $data['categories'] = ProductCategory::orderBy('name')->get();
 
         if (Auth::user()->type == 1) {
+          
 
             return view('admin.index', $data);
+        } else {
+            return redirect()->route('market');
+        }
+    }
+    public function admin()
+    {
+        
+        $data['user'] = $user = Auth::user();
+        $data['products'] = Product::latest()->get();
+        $data['allproducts'] = Product::latest()->get();
+        $data['boughtproducts'] = Purchase::get();
+        $data['ann'] = Announcement::latest()->get();
+        $data['categories'] = ProductCategory::orderBy('name')->get();
+
+        if (Auth::user()->type == 1) {
+          
+
+            return view('admin.admin', $data);
         } else {
             return redirect()->route('market');
         }
@@ -160,16 +194,19 @@ class CourseController extends Controller
         $data['ann'] = Announcement::latest()->get();
         $data['categories'] = ProductCategory::orderBy('name')->get();
         $data['status'] = $status = [];
-        $expenses = DB::table('transactions')
+        $data['expenses'] =$expenses = DB::table('transactions')
             ->where('userId', $user->userId)
             ->where('transactionType', '!=', 'Deposit')
             ->where('status', 'CONFIRM')
             ->sum('amount');
 
-        $walletamount = DB::table('funds')
+        $data['walletamount'] = $walletamount = DB::table('funds')
             ->where('userId', $user->userId)
             ->where('status', 'success')
             ->sum('amount');
+
+            
+            
 
         $data['balance'] = $walletamount - $expenses;
 
@@ -404,9 +441,28 @@ class CourseController extends Controller
     }
     public function allproducts()
     {
-        $data['user'] = Auth::user();
+        
+        $data['user'] =  $user = Auth::user();
         $data['products'] = Product::latest()->get();
         $data['ann'] = Announcement::latest()->get();
+
+        $data['expenses'] =$expenses = DB::table('transactions')
+            ->where('userId', $user->userId)
+            ->where('transactionType', '!=', 'Deposit')
+            ->where('status', 'CONFIRM')
+            ->sum('amount');
+
+        $data['walletamount'] = $walletamount = DB::table('funds')
+            ->where('userId', $user->userId)
+            ->where('status', 'success')
+            ->sum('amount');
+
+            
+            
+
+        $data['balance'] = $walletamount - $expenses;
+
+
         return view('market.allproducts', $data);
     }
     public function live_preview($id)
@@ -653,6 +709,7 @@ class CourseController extends Controller
         // $balance = 5000;
         $realprice =  $product->price *  $request->quantity;
       
+      
         if ($balance >= $product->price) {
 
             $transactionId = $this->randomDigit();
@@ -703,6 +760,23 @@ class CourseController extends Controller
     {
         $data['product'] = $product = Product::where('uid', $product_id)->first();
         $data['user'] =  $user = Auth::user();
+        $data['expenses'] =$expenses = DB::table('transactions')
+            ->where('userId', $user->userId)
+            ->where('transactionType', '!=', 'Deposit')
+            ->where('status', 'CONFIRM')
+            ->sum('amount');
+
+        $data['walletamount'] = $walletamount = DB::table('funds')
+            ->where('userId', $user->userId)
+            ->where('status', 'success')
+            ->sum('amount');
+
+            
+            
+
+        $data['balance'] = $walletamount - $expenses;
+
+
 
         return view('market.delivery', $data);
     }

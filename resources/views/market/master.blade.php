@@ -67,7 +67,7 @@
 						<!-- Nav item 1 Demos -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="demoMenu" data-bs-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">Large Market</a>
+								aria-haspopup="true" aria-expanded="false">Market Place</a>
 							<ul class="dropdown-menu" aria-labelledby="demoMenu">
 								<li> <a class="dropdown-item" href="/allproducts">All Products</a></li>
 							
@@ -234,7 +234,9 @@ Page Banner START -->
 												{{-- <span class="h6">0</span>
 												<span class="text-body fw-light">points</span> --}}
 												<span class='text-success'> {{ $user->package }} Package ({{ $user->point ?? "0" }} Points)</span><br>
-												<span class='text-success'>Wallet Balance : NGN{{ number_format($balance ?? "0", 2) }}</span>
+												<span class='text-success'>Wallet Balance : NGN{{ number_format($balance ?? "0", 2) }}</span><br>
+												<span class='text-success'>Total Purchases : NGN{{ number_format($expenses ?? "0", 2) }}</span><br>
+												<span class='text-success'>Income Wallet : NGN{{ number_format($walletamount ?? "0", 2) }}</span>
 											</li>
 											<li class="list-inline-item me-3 mb-1 mb-sm-0">
 												<span class="h6">0</span>

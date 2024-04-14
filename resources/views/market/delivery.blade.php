@@ -19,7 +19,8 @@
             <div class="accordion accordion-circle" id="accordioncircle">
                 <!-- Credit or debit card START -->
                 <div class='alert alert-success'>
-                    {{ $product->title }} (NGN{{ $product->price }})
+                    <input type='hidden' id='amount' value="{{ $product->price }}"/>
+                    {{ $product->title }} (NGN<span id='totalamount'>{{ $product->price }}</span>)
                 </div>
                 <div class="accordion-item mb-3">
                    
@@ -266,7 +267,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Quantity</label>
-                                    <input type="number" required value='1' name='quantity' class="form-control" placeholder="">
+                                    <input type="number" required value='1' id='quantity' name='quantity' class="form-control" placeholder="">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Additional Info</label>
@@ -300,4 +301,13 @@
 </div>
 @endsection
 @section('script')
+<script>
+    $(document).ready(function() {
+        $("#quantity").on('input', function() {
+            console.log('here')
+            var newval = $("#quantity").val() * $("#amount").val()
+            $("#totalamount").html(newval)
+        })
+    }) 
+</script>
 @endsection

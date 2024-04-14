@@ -8,8 +8,8 @@
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="learn.abovemarts.com">
-    <meta name="description" content="Abovemarts Ecommerce Portal">
+    <meta name="author" content="shop.abovemarts.com">
+    <mproductme="description" content="Abovemarts Ecommerce Portal">
 
     <!-- Favicon -->
     {{--
@@ -73,7 +73,7 @@ Page content START -->
                                             <div class="col-md-6">
 
                                                 <div id='imagecontent'>
-                                                    <img src="https://learn.abovemarts.com/public/courseimage/{{ $product->image}}"
+                                                    <img src="https://shop.abovemarts.com/public/cproductmage/{{ $product->image}}"
                                                         class="rounded" alt="">
                                                 </div>
 
@@ -518,10 +518,10 @@ Page content START -->
                                                             <!-- Title -->
                                                             <h5 class="mb-3">Frequently Asked Questions</h5>
                                                             <!-- FAQ item -->
-                                                            <div class="mt-4">
+                                                            {{-- <div class="mt-4">
                                                                 <h6>What is the warranty period for this product?</h6>
                                                                 <p class="mb-0">This product is under a warranty of 1Month.</p>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="mt-4">
                                                                 <h6>How much is this product?</h6>
                                                                 <p class="mb-0">The discounted price for this product is
@@ -530,13 +530,13 @@ Page content START -->
                                                                         number_format($product->slashed_price) }}</b>
                                                                 </p>
                                                             </div>
-                                                            <div class="mt-4">
+                                                            {{-- <div class="mt-4">
                                                                 <h6>How much is the product for Abovemart's Platinum
                                                                     members?</h6>
                                                                 <p class="mb-0">For Platinun members, the product is
                                                                     brought down to <b>NGN{{ number_format($product->price
                                                                         /2) }}</b>.</p>
-                                                            </div>
+                                                            </div> --}}
                                                           
 
                                                         </div>
@@ -557,9 +557,9 @@ Page content START -->
                                                         <!-- Price and share button -->
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <!-- Price -->
-                                                            <h3 class="fw-bold mb-0 me-2">${{
+                                                            <h3 class="fw-bold mb-0 me-2">NGN{{
                                                                 number_format($product->price, 2) }} <span
-                                                                    class='text-danger'><s>${{
+                                                                    class='text-danger'><s>NGN{{
                                                                         number_format($product->slashed_price, 2)
                                                                         }}</s></span></h3>
                                                             <!-- Share button with dropdown -->
@@ -574,15 +574,15 @@ Page content START -->
                                                                 <ul class="dropdown-menu dropdown-w-sm dropdown-menu-end min-w-auto shadow rounded"
                                                                     aria-labelledby="dropdownShare">
                                                                     <li><a class="dropdown-item"
-                                                                            href="https://twitter.com/intent/tweet?text=Hi, have you seen this insightful course at Abovemarts Academy?{{ $product->title }}&url=https://learn.abovemarts.com/preview_course/{{ $product->uid }}"><i
+                                                                            href="https://twitter.com/intent/tweet?text=Hi, have you seen this product at Abovemarts Store?{{ $product->title }}&url=https://shop.abovemarts.com/preview_product/{{ $product->uid }}"><i
                                                                                 class="fab fa-twitter-square me-2"></i>Twitter</a>
                                                                     </li>
                                                                     <li><a class="dropdown-item"
-                                                                            href="https://www.facebook.com/sharer/sharer.php?u=https://learn.abovemarts.com/preview_course/{{ $product->uid }}&quote=Hi, have you seen this insightful course at Abovemarts Academy? {{ $product->title }}"><i
+                                                                            href="https://www.facebook.com/sharer/sharer.php?u=https://shop.abovemarts.com/preview_product/{{ $product->uid }}&quote=Hi, have you seen this product at Abovemarts store? {{ $product->title }}"><i
                                                                                 class="fab fa-facebook-square me-2"></i>Facebook</a>
                                                                     </li>
                                                                     <li><a class="dropdown-item"
-                                                                            href="https://api.whatsapp.com/send?text=Hi, have you seen this insightful course at Abovemarts Academy? {{ $product->title }}&url=https://learn.abovemarts.com/preview_course/{{ $product->uid }}"><i
+                                                                            href="https://api.whatsapp.com/send?text=Hi, have you seen this product at Abovemarts store? {{ $product->title }}&url=https://shop.abovemarts.com/preview_product/{{ $product->uid }}"><i
                                                                                 class="fab fa-whatsapp me-2"></i>Whatsapp</a>
                                                                     </li>
 
@@ -881,7 +881,7 @@ Footer START -->
                         <li class="list-inline-item ms-2"><a href="#"><i class="text-white fab fa-linkedin-in"></i></a>
                         </li>
                         <li class="list-inline-item ms-2"><a
-                                href="https://twitter.com/intent/tweet?text=Hi, have you seen this insightful course at Abovemarts Academy?{{ $product->title }}&url={{ $product->uid }}"><i
+                                href="https://twitter.com/intent/tweet?text=Hi, have you seen this product at Abovemarts store?{{ $product->title }}&url={{ $product->uid }}"><i
                                     class="text-white fab fa-twitter"></i></a></li>
                     </ul>
                 </div>
