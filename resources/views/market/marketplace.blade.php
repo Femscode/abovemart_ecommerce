@@ -287,7 +287,7 @@ Page content START -->
                                         <!-- Title -->
                                         <h5 class="card-title fw-normal"><a href="/preview_course/{{ $product->uid }}">{{
                                             $product->title }}</a></h5>
-                                       <p class="mb-2 text-truncate-2">{!! $product->description !!}</p>
+                                       <p class="mb-2 text-truncate-2">{!! Str_limit($product->description,100) !!}</p>
                                        <!-- Rating star -->
                                      
                                     </div>
