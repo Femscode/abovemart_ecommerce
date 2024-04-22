@@ -636,26 +636,23 @@ class CourseController extends Controller
         $data['categories'] = ProductCategory::orderBy('name')->get();
         return view('admin.index', $data);
     }
-    public function searchCourseStudent(Request $request)
+    public function searchProduct(Request $request)
     {
         $search = $request->search;
         // dd($request->all(),$search);
         $data['user'] = $user =  Auth::user();
         // dd($request->search);
-        $enroll = Enroll::where('user_id', Auth::user()->id)->pluck('course_id');
+     
 
-
-        $data['courses'] = Product::whereNotIn('id', $enroll)
-            ->where(function ($query) use ($request) {
+        $data['products'] = Product::where(function ($query) use ($request) {
                 $query->where('title', 'like', '%' . $request->search . '%')
-                    ->orWhere('course_code', 'like', '%' . $request->search . '%')
                     ->orWhere('description', 'like', '%' . $request->search . '%');
             })
             ->paginate(9);
 
         $data['categories'] = ProductCategory::orderBy('name')->get();
         // dd($data);
-        return view('student.allcourses', $data);
+        return view('market.allproducts', $data);
     }
     public function searchCourseTitle(Request $request)
     {

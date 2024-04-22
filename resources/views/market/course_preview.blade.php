@@ -577,12 +577,12 @@ Page content START -->
                                                                             href="https://twitter.com/intent/tweet?text=Hi, have you seen this product at Abovemarts Store?{{ $product->title }}&url=https://shop.abovemarts.com/preview_product/{{ $product->uid }}"><i
                                                                                 class="fab fa-twitter-square me-2"></i>Twitter</a>
                                                                     </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="https://www.facebook.com/sharer/sharer.php?u=https://shop.abovemarts.com/preview_product/{{ $product->uid }}&quote=Hi, have you seen this product at Abovemarts store? {{ $product->title }}"><i
+                                                                    {{-- <li><a class="dropdown-item"
+                                                                            href="https://www.facebook.com/sharer/sharer.php?u=https://shop.abovemarts.com/preview_product/{{ $product->uid }}&quote=Hi, have you seen this product at Abovemarts store? {{ $product->title }}&url=https://shop.abovemarts.com/preview_product/{{ $product->uid }}"><i
                                                                                 class="fab fa-facebook-square me-2"></i>Facebook</a>
-                                                                    </li>
+                                                                    </li> --}}
                                                                     <li><a class="dropdown-item"
-                                                                            href="https://api.whatsapp.com/send?text=Hi, have you seen this product at Abovemarts store? {{ $product->title }}&url=https://shop.abovemarts.com/preview_product/{{ $product->uid }}"><i
+                                                                            href="https://api.whatsapp.com/send?text=Hi, have you seen this product at Abovemarts store? {{ $product->title }} url=https://shop.abovemarts.com/preview_product/{{ $product->uid }}"><i
                                                                                 class="fab fa-whatsapp me-2"></i>Whatsapp</a>
                                                                     </li>
 

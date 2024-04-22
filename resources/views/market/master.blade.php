@@ -296,9 +296,9 @@ Page content START -->
 										<div class="list-group list-group-dark list-group-borderless">
 											<a class="list-group-item" href="/dashboard"><i
 													class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-											<a class="list-group-item" href="/dashboard"><i
+											<a class="list-group-item" href="/allproducts"><i
 													class="bi bi-card-checklist fa-fw me-2"></i>Available Products</a>
-											<a class="list-group-item" href="/allcourses"><i
+											<a class="list-group-item" href="/allproducts"><i
 													class="bi bi-basket fa-fw me-2"></i>All Products</a>
 												
 											@if($user->package !== "Basic")

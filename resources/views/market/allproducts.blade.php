@@ -16,7 +16,7 @@
 
 		<div class="col-md-12">
 
-			<form method='post' action='searchCourseStudent' class="rounded position-relative">@csrf
+			<form method='post' action='searchProduct' class="rounded position-relative">@csrf
 				<div class="search-container">
 					<input required id="search-input" class="form-control bg-body" name='search'
 						placeholder='Search for product...' type="search"

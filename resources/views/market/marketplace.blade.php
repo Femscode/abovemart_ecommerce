@@ -310,9 +310,11 @@ Page content START -->
             
             
                                         {{-- //To be reomv later --}}
-                                        
+                                        <a href='/preview_product/{{ $product->uid }}' class='btn btn-info btn-sm'>Preview</a>
+							
                                       
-                                        <a  href='/preview_product/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
+                                        <a href='/deliverydetails/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
+							
                                         {{-- <a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a> --}}
             
                                       
