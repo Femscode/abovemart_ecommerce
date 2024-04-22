@@ -180,27 +180,10 @@
 					</tbody>
 					<!-- Table body END -->
 				</table>
+				{!! $boughtproducts->links('pagination::bootstrap-4') !!}
 			</div>
 			<!-- Course list table END -->
 
-			<!-- Pagination START -->
-			<div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">
-				<!-- Content -->
-				<p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
-				<!-- Pagination -->
-				<nav class="d-flex justify-content-center mb-0" aria-label="navigation">
-					<ul class="pagination pagination-sm pagination-primary-soft mb-0 pb-0">
-						<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i
-									class="fas fa-angle-left"></i></a></li>
-						<li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-						<li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-						<li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-						<li class="page-item mb-0"><a class="page-link" href="#"><i
-									class="fas fa-angle-right"></i></a></li>
-					</ul>
-				</nav>
-			</div>
-			<!-- Pagination END -->
 		</div>
 		<!-- Card body START -->
 	</div>

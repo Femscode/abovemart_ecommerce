@@ -467,7 +467,7 @@ class ExamController extends Controller
     }
     public function marketplace() {
         $data['categories'] = ProductCategory::latest()->get();
-        $data['products'] = Product::latest()->get();
+        $data['products'] = Product::latest()->paginate(10);
 
         return view('market.marketplace', $data);
     }

@@ -98,6 +98,9 @@
 					</div>
 				</div>
 				@endforeach
+				<div class='col-12'>
+				{!! $products->links('pagination::bootstrap-4') !!}
+			</div>
 				<!-- Card item END -->
 
 

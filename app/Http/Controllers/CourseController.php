@@ -189,7 +189,7 @@ class CourseController extends Controller
         $data['user'] = $user = Auth::user();
         $data['products'] = Product::latest()->get();
         $data['allproducts'] = Product::latest()->get();
-        $data['boughtproducts'] = Purchase::where('user_id', $user->id)->latest()->get();
+        $data['boughtproducts'] = Purchase::where('user_id', $user->id)->latest()->paginate(10);
 
         $data['ann'] = Announcement::latest()->get();
         $data['categories'] = ProductCategory::orderBy('name')->get();
@@ -443,7 +443,7 @@ class CourseController extends Controller
     {
         
         $data['user'] =  $user = Auth::user();
-        $data['products'] = Product::latest()->get();
+        $data['products'] = Product::latest()->paginate(10);
         $data['ann'] = Announcement::latest()->get();
 
         $data['expenses'] =$expenses = DB::table('transactions')
@@ -622,15 +622,14 @@ class CourseController extends Controller
         $search = $request->search;
         // dd($request->all(),$search);
         $data['ann'] = Announcement::latest()->get();
-        $enroll = Enroll::where('user_id', Auth::user()->id)->pluck('course_id');
         $data['user'] = $user =  Auth::user();
-        $data['courses'] = Product::whereNotIn('id', $enroll)
-            ->where(function ($query) use ($request) {
+        $data['products'] = Product::where(function ($query) use ($request) {
                 $query->where('title', 'like', '%' . $request->search . '%')
-                    ->orWhere('course_code', 'like', '%' . $request->search . '%')
                     ->orWhere('description', 'like', '%' . $request->search . '%');
             })
             ->paginate(9);
+            $data['boughtproducts'] = Purchase::where('vendor_id', $user->id)->get();
+        
 
 
         $data['categories'] = ProductCategory::orderBy('name')->get();
