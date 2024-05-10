@@ -84,7 +84,9 @@
 
 							{{-- //To be reomv later --}}
 							<a href='/preview_product/{{ $product->uid }}' class='btn btn-info btn-sm'>Preview</a>
-							
+							@if($product->quantity <= 0)
+							<div class='btn btn-secondary'>Out Of Stock</div>
+							@else
 							@if(in_array($user->package, $product->packages ?? []))
 							<a href='/deliverydetails/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
 							{{-- <a onclick="return confirm('Are you sure you want to purchase this product?')" href='/buyproduct/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a> --}}
@@ -95,6 +97,7 @@
 							<a href='https://abovemarts.com/userpackages' class='btn btn-success btn-sm'>Upgrade 
 								to have access</a>
 							
+							@endif
 							@endif
 						</div>
 					</div>

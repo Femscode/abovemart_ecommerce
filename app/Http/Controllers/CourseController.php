@@ -687,6 +687,9 @@ class CourseController extends Controller
         $product = Product::where('uid', $request->product_id)->first();
         $user = Auth::user();
 
+        if($product->quantity < $request->quantity) {
+            return redirect()->back()->with('error', "Quantity booked is more than the quantity of product left!");
+        }
         // dd($course);
 
         //Here is where you charge the user for the course, create transaction for the course, after that
@@ -749,6 +752,8 @@ class CourseController extends Controller
                 'info' => $request->info,
                 
             ]);
+            $product->quantity -= $request->quantity;
+            $product->save();
             return redirect()->route('allproducts')->with('message', "Product bought successfully!");
         } else {
 

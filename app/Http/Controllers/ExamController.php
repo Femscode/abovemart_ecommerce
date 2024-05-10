@@ -509,6 +509,7 @@ class ExamController extends Controller
         $id = $request->id;
         $category = ProductCategory::find($id);
         $ebooks = Product::where('category', $id)->delete();
+        $subcat = SubCategory::where('category', $id)->delete();
 
         // dd($ebooks);
 

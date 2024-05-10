@@ -20,7 +20,8 @@
                 <!-- Credit or debit card START -->
                 <div class='alert alert-success'>
                     <input type='hidden' id='amount' value="{{ $product->price }}"/>
-                    {{ $product->title }} (NGN<span id='totalamount'>{{ $product->price }}</span>)
+                    {{ $product->title }} (NGN<span id='totalamount'>{{ $product->price }}</span>) |
+                    Quantity Left : {{ $product->quantity }}
                 </div>
                 <div class="accordion-item mb-3">
                    

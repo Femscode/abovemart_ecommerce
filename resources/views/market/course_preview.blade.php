@@ -593,17 +593,19 @@ Page content START -->
                                                         <!-- Buttons -->
                                                         <div class="mt-3 d-grid">
                                                             @if(Auth::check())
-
+                                                            @if($product->quantity <= 0)
+							<div class='btn btn-secondary'>Out Of Stock</div>
+							@else
                                                             @if(in_array(Auth::user()->package, $product->packages ?? []))
                                                             
                                                             <a href='/deliverydetails/{{ $product->uid }}' class='btn btn-success btn-sm'>Buy Now</a>
 							
-                                                          
+                                                         
                                                             @else
                                                             <a href='https://abovemarts.com/userpackages'
                                                             class='btn btn-success btn-sm'>Upgrade To Access</a>
                                                            
-                                                           
+                                                            @endif
                                                                 @endif
                                                                 @else 
                                                                 <a href='https://shop.abovemarts.com/allproducts'
