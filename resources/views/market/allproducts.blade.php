@@ -45,6 +45,8 @@
 							<div class="d-flex justify-content-between mb-2">
 								<a href="#" class="badge bg-success bg-opacity-10 text-success">{{ $product->cat->name ??
 									"" }}</a>
+								<a href="#" class="badge bg-primary bg-opacity-10 text-primary">{{ $product->subcat->name ??
+									"" }}</a>
 								<a href="#" class="text-danger"><i class="fas fa-heart"></i></a>
 							</div>
 							<!-- Title -->

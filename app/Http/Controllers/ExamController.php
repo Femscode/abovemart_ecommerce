@@ -18,6 +18,7 @@ use App\Models\EbookCategory;
 use App\Models\CourseCategory;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\SubCategory;
 use App\Models\UploadedAssessment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Client\Response;
@@ -359,10 +360,15 @@ class ExamController extends Controller
     public function categories()
     {
         $data['user'] = $user = Auth::user();
-        $data['categories'] = ProductCategory::orderBy('name')->get();
+        $data['categories'] = ProductCategory::orderBy('name')->with('subcategories')->get();
         $data['courses'] = Product::where('user_id', $user->id)->latest()->get();
 
         return view('admin.categories', $data);
+    }
+    public function fetchsubcategory(Request $request) {
+        $id = $request->id;
+        $subcategory = SubCategory::where('category_id',$id)->get();
+        return $subcategory;
     }
     public function course_categories()
     {
@@ -442,6 +448,10 @@ class ExamController extends Controller
         $this->validate($request, [
             'name' => 'required',
         ]);
+        $check = ProductCategory::where('user_id', Auth::user()->id)->where('name', $request->name)->first();
+        if($check) {
+            return redirect()->back()->with('error', 'Sub Category Addeed Existed!');
+        }
 
         ProductCategory::create([
             'user_id' => Auth::user()->id,
@@ -450,6 +460,28 @@ class ExamController extends Controller
 
 
         return redirect()->back()->with('message', 'Category Addeed Successfully!');
+    }
+    public function createSubCategory(Request $request)
+    {
+        $this->validate($request, [
+            'category_id' => 'required',
+            'name' => 'required',
+        ]);
+
+        $check = SubCategory::where('category_id',$request->category_id)->where('user_id', Auth::user()->id)->where('name', $request->name)->first();
+        if($check) {
+            return redirect()->back()->with('error', 'Sub Category Addeed Existed!');
+        }
+        SubCategory::create([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'user_id' => Auth::user()->id,
+
+        ]);
+       
+
+
+        return redirect()->back()->with('message', 'Sub Category Addeed Successfully!');
     }
     public function createCourseCategory(Request $request)
     {

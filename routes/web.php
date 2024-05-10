@@ -101,6 +101,8 @@ Route::any('/all_ebooks', [App\Http\Controllers\ExamController::class, 'all_eboo
 Route::any('/allebooks', [App\Http\Controllers\ExamController::class, 'allebooks'])->name('allebooks');
 Route::any('/createEbook', [App\Http\Controllers\ExamController::class, 'createEbook'])->name('createEbook');
 Route::any('/createCategory', [App\Http\Controllers\ExamController::class, 'createCategory'])->name('createCategory');
+Route::any('/createSubCategory', [App\Http\Controllers\ExamController::class, 'createSubCategory'])->name('createSubCategory');
+Route::any('/fetchsubcategories', [App\Http\Controllers\ExamController::class, 'fetchsubcategory'])->name('fetchsubcategories');
 Route::any('/createCourseCategory', [App\Http\Controllers\ExamController::class, 'createCourseCategory'])->name('createCourseCategory');
 Route::any('/searchEbook', [App\Http\Controllers\ExamController::class, 'searchEbook'])->name('searchEbook');
 Route::any('/searchEbookStudent', [App\Http\Controllers\ExamController::class, 'searchEbookStudent'])->name('searchEbookStudent');

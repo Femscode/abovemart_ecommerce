@@ -73,7 +73,8 @@ Page content START -->
 
 				<!-- Rating -->
 				<div class="d-flex align-items-center mb-4">
-					<h4 class="me-3 mb-0 text-success">{{ $ebook->cat->name }}</h4>
+					<h4 class="me-3 mb-0 text-success">{{ $ebook->cat->name ?? ""}}</h4>
+					<h5 class="me-3 mb-0 text-success">{{ $ebook->subcat->name ?? "" }}</h5>
 				
 				</div>
 

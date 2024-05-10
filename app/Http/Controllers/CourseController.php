@@ -86,9 +86,7 @@ class CourseController extends Controller
         $data['categories'] = ProductCategory::orderBy('name')->get();
 
         if (Auth::user()->type == 1) {
-          
-
-            return view('admin.index', $data);
+                      return view('admin.index', $data);
         } else {
             return redirect()->route('market');
         }
@@ -487,13 +485,16 @@ class CourseController extends Controller
         $image->move(public_path() . '/productimage/', $imageName);
         $course = Product::create([
             'uid' => Str::uuid(),
+            'sku' => "SKU-".Str::random(7),
             'user_id' => $user->id,
             'title' => $request->title,
             'description' => $request->description,
             'duration' => $request->duration,
+            'quantity' => $request->quantity,
             'price' => $request->price,
             'slashed_price' => $request->slashed_price,
             'category' => $request->category,
+            'subcategory' => $request->subcategory,
             'packages' => $package,
             'image' => $imageName,
         ]);
@@ -523,8 +524,10 @@ class CourseController extends Controller
         $course->description = $request->description;
 
         $course->price = $request->price;
+        $course->quantity = $request->quantity;
         $course->slashed_price = $request->slashed_price;
         $course->category = $request->category;
+        $course->subcategory = $request->subcategory;
         $course->packages = $package;
 
         $course->save();

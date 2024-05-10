@@ -127,7 +127,7 @@
 									</div>
 									<!-- Title -->
 									<h6 class="mb-0 ms-2">
-										<a href="#" class="stretched-link">{{ $product->title }}</a>
+										<a href="#" class="stretched-link">{{ $product->title }}<br>{{ $product->sku }}</a>
 									</h6>
 								</div>
 							</td>
@@ -153,7 +153,7 @@
 
 							<!-- Table data -->
 							<td> <span class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">{{
-									$product->cat->name ?? "not specified" }}</span> </td>
+									$product->cat->name ?? "not specified" }}({{ $product->subcat->name ?? "not specified" }})</span> </td>
 
 							<!-- Table data -->
 							<td>
@@ -162,6 +162,7 @@
 								for="option1">Free</label>
 								@else 
 								NGN{{ number_format($product->price) }} <s>NGN{{ number_format($product->slashed_price) }}</s>
+								<br>Quantity : {{ number_format($product->quantity) }}
 								@endif
 							</td>
 

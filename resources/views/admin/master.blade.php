@@ -348,6 +348,13 @@
 											@endforeach
 										</select>
 									</div>
+									<div class="col-12">
+										<label class="form-label">Sub Category</label>
+										<select id='subcategory' name='subcategory' required class='form-control'>
+											<option>--Select Sub Category--</option>
+											
+										</select>
+									</div>
 
 									<div class="col-12 mt-3 mb-6">
 										<label class="form-label">Description</label>
@@ -358,16 +365,21 @@
 
 
 
-									<div class="col-6">
+									<div class="col-4">
 										<label class="form-label">Price(NGN)</label>
-										<input id='price' name='price' required class="form-control" type="text"
+										<input id='price' name='price' required class="form-control" type="number"
 											placeholder="Enter 0 if the product is free">
 									</div>
 
-									<div class="col-6">
+									<div class="col-4">
 										<label class="form-label">Slashed <s>Price</s> (NGN)</label>
 										<input id='slashed_price' name='slashed_price' required class="form-control"
-											type="text" placeholder="Enter 0 if the product is free">
+											type="number" placeholder="Enter 0 if the product is free">
+									</div>
+									<div class="col-4">
+										<label class="form-label">Quantity</label>
+										<input id='quantity' name='quantity' required class="form-control"
+											type="number" placeholder="Quantity of product">
 									</div>
 									<div class="col-12">
 										<label class="form-label">Product Access</label><br>
@@ -430,6 +442,13 @@
 										@endforeach
 									</select>
 								</div>
+								<div class="col-12">
+									<label class="form-label">Category</label>
+									<select id='editsubcategory' class='form-control'>
+										<option>--Select Sub Category--</option>
+									
+									</select>
+								</div>
 
 								<div class="col-12 mt-3 mb-6">
 									<label class="form-label">Description</label>
@@ -442,13 +461,18 @@
 
 								<div class="col-6">
 									<label class="form-label">Price(NGN)</label>
-									<input id='editprice' required class="form-control" type="text"
+									<input id='editprice' required class="form-control" type="number"
 										placeholder="Enter 0 is the product is free">
 								</div>
 								<div class="col-6">
 									<label class="form-label">Slashed <s>Price(NGN)</s></label>
-									<input id='editslashedprice' required class="form-control" type="text"
+									<input id='editslashedprice' required class="form-control" type="number"
 										placeholder="Enter 0 is the product is free">
+								</div>
+								<div class="col-6">
+									<label class="form-label">Quantity</label>
+									<input id='editquantity' required class="form-control" type="number"
+										>
 								</div>
 								<div class="col-12">
 									<label class="form-label">Product Access</label><br>
@@ -531,6 +555,30 @@
 					@if (session('error'))
             			swal('Error!',"{{ session('error') }}",'error');
         			@endif
+
+					$("#category").change(function() {
+  var id = $(this).val();
+  $.get("{{ route('fetchsubcategories') }}?id=" + id, function(data) {
+    console.log(data);
+    var subcategorySelect = $("#subcategory");
+    subcategorySelect.empty();
+    $.each(data, function(index, subcategory) {
+      subcategorySelect.append("<option value='" + subcategory.id + "'>" + subcategory.name + "</option>");
+    });
+  });
+});
+
+$("#editcategory").change(function() {
+  var id = $(this).val();
+  $.get("{{ route('fetchsubcategories') }}?id=" + id, function(data) {
+    console.log(data);
+    var subcategorySelect = $("#editsubcategory");
+    subcategorySelect.empty();
+    $.each(data, function(index, subcategory) {
+      subcategorySelect.append("<option value='" + subcategory.id + "'>" + subcategory.name + "</option>");
+    });
+  });
+});
 					$(".edit_course").click(function() {
 						
 						id = $(this).data('id');
@@ -543,8 +591,10 @@
 							// $("#editdescription").html(data.description)
 							quilledited.clipboard.dangerouslyPasteHTML(data.description)
 							$("#editcategory").val(data.category)
+							$("#editsubcategory").val(data.subcategory)
 							$("#editprice").val(data.price)
 							$("#editslashedprice").val(data.slashed_price)
+							$("#editquantity").val(data.quantity)
 							
 							$("#editpackagelist").html(data.packages)
 						
@@ -565,8 +615,9 @@
 							fd.append('title',  $("#title").val());
 							fd.append('course_code',  $("#course_code").val());
 							fd.append('description', quill.root.innerHTML);
-							// fd.append('description', $("#description").val());
+							fd.append('quantity', $("#quantity").val());
 							fd.append('category', $("#category").val());
+							fd.append('subcategory', $("#subcategory").val());
 							fd.append('package', selectedPackagesString);
 							fd.append('price', $("#price").val());
 							fd.append('slashed_price', $("#slashed_price").val());
@@ -616,10 +667,12 @@
 							
 							fd.append('description', quilledited.root.innerHTML);
 							fd.append('category', $("#editcategory").val());
+							fd.append('subcategory', $("#editsubcategory").val());
 							
 							fd.append('package', selectedPackagesString);
 							fd.append('price', $("#editprice").val());
 							fd.append('slashed_price', $("#editslashedprice").val());
+							fd.append('quantity', $("#editquantity").val());
 							if(image[0] != undefined) {
            						 fd.append('image', image[0]);
            					 }

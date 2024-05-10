@@ -626,6 +626,12 @@ Page content START -->
                                                             <li
                                                                 class="list-group-item px-0 d-flex justify-content-between">
                                                                 <span class="h6 fw-light mb-0"><i
+                                                                        class="fas fa-fw fa-book-open text-primary"></i>Sub Category</span>
+                                                                <span>{{ $product->subcat->name ?? "Not specified" }}</span>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item px-0 d-flex justify-content-between">
+                                                                <span class="h6 fw-light mb-0"><i
                                                                         class="fas fa-fw fa-clock text-primary"></i>Warranty</span>
                                                                 <span>1 Month</span>
                                                             </li>

@@ -13,6 +13,8 @@
             <div>
             <a href="#" class="btn btn-sm btn-success mb-0" data-bs-toggle="modal" data-bs-target="#addCategory"><i
                     class="bi bi-plus-circle me-2"></i>Add Category</a>
+            <a href="#" class="btn btn-sm btn-primary mb-0" data-bs-toggle="modal" data-bs-target="#addSubCategory"><i
+                    class="bi bi-plus-circle me-2"></i>Add Sub Category</a>
             </div>
 
         </div>
@@ -38,6 +40,7 @@
                             <th scope="col" class="border-0 rounded-start">S/N</th>
                             {{-- <th scope="col" class="border-0">Instructor</th> --}}
                             <th scope="col" class="border-0">Name</th>
+                            <th scope="col" class="border-0">Sub Categories</th>
                            
                             <th scope="col" class="border-0 rounded-end">Action</th>
                         </tr>
@@ -51,8 +54,18 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                           
-                            <td>{{ $category->name }}</td>
-                         
+                            <td>{{ $category->name }}
+                           
+                            </td>
+                            <td>
+                                <div class='col-md-6'>
+                                    <ul>
+                                @foreach($category->subcategories as $subcategory)
+                                <li>{{ $subcategory->name }}</li>
+                                @endforeach
+                                    </ul>
+                                </div>
+                              </td>
                            <td>
 
                                  <button id='delete_ebook' data-id='{{ $category->id }}'
@@ -111,6 +124,40 @@
                         <label class="form-label">Category Name</label>
                         <input id='title' name='name' required class="form-control" type="text"
                             placeholder="Input Category Name">
+                    </div>
+                  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger-soft my-0" data-bs-dismiss="modal">Close</button>
+                <button id='c_submita' type="submit" class="btn btn-success my-0">Add</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addSubCategory" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-white" id="addCategoryLabel">Add Product Sub Category</h5>
+                <button type="button" class="btn btn-sm btn-light mb-0" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="modal-body">
+                <form action="/createSubCategory" method='post' class="row text-start g-3">@csrf
+                    <!-- Question -->
+                    <div class="col-12">
+                        <label class="form-label">Select Category</label>
+                        <select name='category_id' required class="form-control" >
+                            <option> -- Select Category --</option>
+                            @foreach($categories as $cat)
+                            <option value='{{ $cat->id }}'>{{ $cat->name }}</option>
+                            @endforeach
+                        </select>
+                        <label class="form-label">Sub Category Name</label>
+                        <input id='title' name='name' required class="form-control" type="text"
+                            placeholder="Input Sub-Category Name">
                     </div>
                   
             </div>
