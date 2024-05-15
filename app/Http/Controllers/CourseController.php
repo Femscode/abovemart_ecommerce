@@ -83,7 +83,9 @@ class CourseController extends Controller
         $data['allproducts'] = Product::latest()->get();
         $data['boughtproducts'] = Purchase::where('vendor_id', $user->id)->get();
         $data['ann'] = Announcement::latest()->get();
-        $data['categories'] = ProductCategory::orderBy('name')->get();
+        $data['categories'] = ProductCategory::where('user_id', $user->id)->orderBy('name')->get();
+
+        return view('admin.index', $data);
 
         if (Auth::user()->type == 1) {
                       return view('admin.index', $data);
@@ -105,6 +107,29 @@ class CourseController extends Controller
           
 
             return view('admin.admin', $data);
+        } else {
+            return redirect()->route('market');
+        }
+    }
+    public function approve($id)
+    {
+        
+       
+
+        $product = Product::where('uid',$id)->first();
+        if (Auth::user()->type == 1) {
+            if($product->active == 1) {
+                $product->active = 0;
+
+            }
+            else {
+                $product->active = 1;
+
+            }
+            $product->save();
+          
+            return redirect()->back()->with('message','Product Status Updated Successfully!');
+
         } else {
             return redirect()->route('market');
         }
@@ -441,7 +466,7 @@ class CourseController extends Controller
     {
         
         $data['user'] =  $user = Auth::user();
-        $data['products'] = Product::latest()->paginate(10);
+        $data['products'] = Product::where('active',1)->latest()->paginate(10);
         $data['ann'] = Announcement::latest()->get();
 
         $data['expenses'] =$expenses = DB::table('transactions')
@@ -712,7 +737,7 @@ class CourseController extends Controller
         $realprice =  $product->price *  $request->quantity;
       
       
-        if ($balance >= $product->price) {
+        if ($balance >= $realprice) {
 
             $transactionId = $this->randomDigit();
             $transactionServiceId = $this->randomDigit();

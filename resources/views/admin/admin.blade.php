@@ -172,6 +172,12 @@
 							<!-- Table data -->
 							<td>
 								<a href='preview_product/{{ $product->uid }}' class='btn btn-sm btn-primary-soft'>Share</a>
+								@if($product->active == 0)
+								<a href='approve/{{ $product->uid }}' class='btn btn-sm btn-success-soft'>Approve</a>
+								@else 
+								
+								<a href='approve/{{ $product->uid }}' class='btn btn-sm btn-danger'>Dissapprove</a>
+								@endif
                              
 								<a data-id='{{ $product->id }}'
 									class="edit_course btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"

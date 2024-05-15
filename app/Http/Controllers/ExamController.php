@@ -360,9 +360,8 @@ class ExamController extends Controller
     public function categories()
     {
         $data['user'] = $user = Auth::user();
-        $data['categories'] = ProductCategory::orderBy('name')->with('subcategories')->get();
+        $data['categories'] = ProductCategory::where('user_id', $user->id)->orderBy('name')->with('subcategories')->get();
         $data['courses'] = Product::where('user_id', $user->id)->latest()->get();
-
         return view('admin.categories', $data);
     }
     public function fetchsubcategory(Request $request) {
@@ -499,7 +498,7 @@ class ExamController extends Controller
     }
     public function marketplace() {
         $data['categories'] = ProductCategory::latest()->get();
-        $data['products'] = Product::latest()->paginate(10);
+        $data['products'] = Product::where('active',1)->latest()->paginate(10);
 
         return view('market.marketplace', $data);
     }

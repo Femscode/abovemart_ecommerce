@@ -25,6 +25,7 @@ Route::any('run_uid', function() {
 Route::any('/', [App\Http\Controllers\CourseController::class, 'index'])->name('index')->middleware('auth');
 Route::any('/dashboard', [App\Http\Controllers\CourseController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 Route::any('/admin', [App\Http\Controllers\CourseController::class, 'admin'])->name('admin')->middleware('auth');
+Route::any('/approve/{id}', [App\Http\Controllers\CourseController::class, 'approve'])->name('approve')->middleware('auth');
 Route::any('/admin_access', [App\Http\Controllers\CourseController::class, 'admin_access'])->name('admin_access')->middleware('auth');
 Route::any('/assignadmin', [App\Http\Controllers\CourseController::class, 'assignadmin'])->name('assignadmin')->middleware('auth');
 Route::any('/deleteAccess/{id}', [App\Http\Controllers\CourseController::class, 'deleteAccess'])->name('deleteAccess')->middleware('auth');

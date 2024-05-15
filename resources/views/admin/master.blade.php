@@ -88,12 +88,18 @@
 						</li>
 
 						<!-- Menu item 6 -->
-						<li class="nav-item"> <a class="nav-link" href="/admin_ebooks"><i
-									class="far fa-chart-bar fa-fw me-2"></i>Purchase Records</a></li>
+						<li class="nav-item"> <a class="nav-link" href="/boughtproducts"><i
+									class="far fa-chart-bar fa-fw me-2"></i>Sales Record</a></li>
 						<li class="nav-item"> <a class="nav-link" href="/categories"><i
 									class="fas fa-list fa-fw me-2"></i>Product Categories</a></li>
+						<li class="nav-item"> <a class="nav-link" href="/market"><i
+									class="fas fa-list fa-fw me-2"></i>Customer Dashboard</a></li>
+						@if($user->type == 1)
 						<li class="nav-item"> <a class="nav-link" href="/admin_access"><i
 									class="fas fa-user-cog fa-fw me-2"></i>Admin Access</a></li>
+						<li class="nav-item"> <a class="nav-link" href="/admin"><i
+									class="fas fa-user-cog fa-fw me-2"></i>Super Admin Dashboard</a></li>
+						@endif
 
 
 						<!-- Menu item 8 -->
