@@ -46,7 +46,7 @@ class CourseController extends Controller
         $data['categories'] = ProductCategory::where('user_id', $user->id)->get();
         $data['products'] = Purchase::where('vendor_id', $user->id)->latest()->get();
         $data['categories'] = ProductCategory::get();
-        $data['products'] = Purchase::latest()->get();
+        // $data['products'] = Purchase::latest()->get();
         return view('admin.boughtproducts', $data);
     }
     public function adminboughtproducts()
