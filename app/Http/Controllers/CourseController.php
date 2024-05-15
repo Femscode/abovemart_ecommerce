@@ -51,12 +51,18 @@ class CourseController extends Controller
     }
     public function adminboughtproducts()
     {
+
         $data['user'] = $user = Auth::user();
-        $data['categories'] = ProductCategory::where('user_id', $user->id)->get();
-        $data['products'] = Purchase::where('vendor_id', $user->id)->latest()->get();
-        // $data['categories'] = ProductCategory::get();
-        // $data['products'] = Purchase::latest()->get();
-        return view('admin.boughtproducts', $data);
+        if($user->type == 1) {
+
+            $data['categories'] = ProductCategory::where('user_id', $user->id)->get();
+            // $data['products'] = Purchase::where('vendor_id', $user->id)->latest()->get();
+            // $data['categories'] = ProductCategory::get();
+            $data['products'] = Purchase::latest()->get();
+            return view('admin.boughtproducts', $data);
+        } else {
+            return redirect()->back()->with('message', 'Restricted Access');
+        }
     }
     public function profile()
     {
