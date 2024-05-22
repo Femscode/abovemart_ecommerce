@@ -355,8 +355,8 @@
 										</select>
 									</div>
 									<div class="col-12">
-										<label class="form-label">Sub Category</label>
-										<select id='subcategory' name='subcategory' required class='form-control'>
+										<label class="form-label">Sub Category <span class='text-danger'>(Optional)</span></label>
+										<select id='subcategory' name='subcategory' class='form-control'>
 											<option>--Select Sub Category--</option>
 											
 										</select>
@@ -389,6 +389,7 @@
 									</div>
 									<div class="col-12">
 										<label class="form-label">Product Access</label><br>
+										<input id='packageall' name='package' value='All' type='checkbox'> All
 										<input id='package' name='package' value='Basic' type='checkbox'> Basic
 										<input id='package' name='package' value='Bronze' type='checkbox'> Bronze
 										<input id='package' name='package' value='Silver' type='checkbox'> Silver
@@ -399,6 +400,7 @@
 
 									<div class="col-12">
 										<label class="form-label">Product Display Image</label>
+										<span class='text-danger'> (Image must have a white background)</span>
 
 										<input id='image' name='image' required class="form-control" type="file"
 											accept="image/*" placeholder="Input product title">
@@ -483,6 +485,7 @@
 								<div class="col-12">
 									<label class="form-label">Product Access</label><br>
 									<div class='btn btn-success' id='editpackagelist'></div><br>
+									<input id='editpackageall' name='editpackage' value='all' type='checkbox'> All
 									<input id='editpackage' name='editpackage' value='Basic' type='checkbox'> Basic
 									<input id='editpackage' name='editpackage' value='Bronze' type='checkbox'> Bronze
 									<input id='editpackage' name='editpackage' value='Silver' type='checkbox'> Silver
@@ -760,6 +763,38 @@ $("#editcategory").change(function() {
     }
 
 })
+</script>
+<script>
+	$(document).ready(function() {
+    // Functionality for the first set of checkboxes
+    $('#editpackageall').click(function() {
+        $('input[name="editpackage"]').prop('checked', this.checked);
+    });
+
+    $('input[name="editpackage"]').not('#editpackageall').click(function() {
+        if (!this.checked) {
+            $('#editpackageall').prop('checked', false);
+        }
+        if ($('input[name="editpackage"]').not('#editpackageall').length === $('input[name="editpackage"]:checked').not('#editpackageall').length) {
+            $('#editpackageall').prop('checked', true);
+        }
+    });
+
+    // Functionality for the second set of checkboxes
+    $('#packageall').click(function() {
+        $('input[name="package"]').prop('checked', this.checked);
+    });
+
+    $('input[name="package"]').not('#packageall').click(function() {
+        if (!this.checked) {
+            $('#packageall').prop('checked', false);
+        }
+        if ($('input[name="package"]').not('#packageall').length === $('input[name="package"]:checked').not('#packageall').length) {
+            $('#packageall').prop('checked', true);
+        }
+    });
+});
+
 </script>
 @yield('script')
 

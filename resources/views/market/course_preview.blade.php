@@ -595,6 +595,8 @@ Page content START -->
                                                             @if(Auth::check())
                                                             @if($product->quantity <= 0)
 							<div class='btn btn-secondary'>Out Of Stock</div>
+                            @elseif($product->active == 0)
+							<div class='btn btn-secondary'>Awaiting Approval</div>
 							@else
                                                             @if(in_array(Auth::user()->package, $product->packages ?? []))
                                                             
