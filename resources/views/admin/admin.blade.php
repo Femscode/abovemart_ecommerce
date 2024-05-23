@@ -22,7 +22,7 @@
 	<div class="row g-4 mb-4">
 		<!-- Course item -->
 		<div class="col-sm-6 col-lg-4">
-			<a href='/dashboard'>
+			<a href='/admin'>
 			<div class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3">
 				<h6>Total Products</h6>
 				<h2 class="mb-0 fs-1 text-primary">{{ count($products) }}</h2>
@@ -102,11 +102,11 @@
 					<thead>
 						<tr>
 							<th scope="col" class="border-0 rounded-start">Product Name</th>
-							{{-- <th scope="col" class="border-0">Instructor</th> --}}
+						
 							<th scope="col" class="border-0">Added Date</th>
-							<th scope="col" class="border-0">Type</th>
 							<th scope="col" class="border-0">Price</th>
-							{{-- <th scope="col" class="border-0">Status</th> --}}
+						
+							<th scope="col" class="border-0">Featured Rank</th>
 							<th scope="col" class="border-0 rounded-end">Action</th>
 						</tr>
 					</thead>
@@ -128,32 +128,19 @@
 									<!-- Title -->
 									<h6 class="mb-0 ms-2">
 										<a href="#" class="stretched-link">{{ $product->title }}</a>
-									</h6>
+
+									</h6><br>
+									<span class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">{{
+										$product->cat->name ?? "not specified" }}</span> 
 								</div>
 							</td>
 
 
 							<!-- Table data -->
-							{{-- <td>
-								<div class="d-flex align-items-center mb-3">
-									
-									<div class="avatar avatar-xs flex-shrink-0">
-										<img class="avatar-img rounded-circle"
-											src="assets/images/avatar/09.jpg" alt="avatar">
-									</div>
-								
-									<div class="ms-2">
-										<h6 class="mb-0 fw-light">Fasanya Pelumi</h6>
-									</div>
-								</div>
-							</td> --}}
-
-							<!-- Table data -->
 							<td>{{ Date('j F Y',strtotime($product->created_at)) }}</td>
 
 							<!-- Table data -->
-							<td> <span class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">{{
-									$product->cat->name ?? "not specified" }}</span> </td>
+						
 
 							<!-- Table data -->
 							<td>
@@ -163,6 +150,16 @@
 								@else 
 								NGN{{ number_format($product->price) }} <s>NGN{{ number_format($product->slashed_price) }}</s>
 								@endif
+							</td>
+
+							<td>
+							
+								<form action='/updateRank' method='post' class='d-grid gap-2'>@csrf 
+									<input type='hidden' name='productId' value="{{$product->id  }}"/>
+									<input required type='number' name='rank' value='{{ $product->rank }}' class='form-control'/>
+									<button type='submit' value='Update' class='btn btn-secondary'>Update</button>
+								</form>
+
 							</td>
 
 							<!-- Table data -->

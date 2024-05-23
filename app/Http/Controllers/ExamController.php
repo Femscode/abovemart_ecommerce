@@ -498,9 +498,25 @@ class ExamController extends Controller
     }
     public function marketplace() {
         $data['categories'] = ProductCategory::latest()->get();
-        $data['products'] = Product::where('active',1)->latest()->paginate(10);
+        $data['products'] = Product::where('active',1)->orderBy('rank')->latest()->paginate(10);
 
         return view('market.marketplace', $data);
+    }
+    public function vendorpage($slug) {
+        $vendor = $data['vendor'] = User::where('username',$slug)->first();
+        if($vendor) {
+            
+            $data['categories'] = ProductCategory::where('user_id',$vendor->id)->latest()->get();
+            $data['products'] = Product::where('user_id',$vendor->id)->where('active',1)->orderBy('rank')->latest()->paginate(10);
+    
+            return view('market.vendorspace', $data);
+
+        }
+        else {
+            return redirect('https://shop.abovemarts.com/marketplace');
+        }
+
+       
     }
 
     public function delete_category(Request $request)

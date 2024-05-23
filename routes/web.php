@@ -10,6 +10,7 @@ use App\Models\Assignment;
 Route::view('mycertificate','certificate.third_certificate');
 Route::any('/live_preview/{id}', [App\Http\Controllers\ExamController::class, 'live_preview'])->name('live_preview');
 Route::any('/marketplace/', [App\Http\Controllers\ExamController::class, 'marketplace'])->name('marketplace');
+Route::any('/vendor/{slug}/', [App\Http\Controllers\ExamController::class, 'vendorpage'])->name('vendorpage');
 Route::any('/preview_product/{id}', [App\Http\Controllers\CourseController::class, 'live_preview'])->name('preview_product');
 
 Auth::routes();
@@ -74,6 +75,8 @@ Route::any('/createann', [App\Http\Controllers\CourseController::class, 'createa
 Route::any('/announcement', [App\Http\Controllers\CourseController::class, 'ann'])->name('annindex');
 Route::any('/boughtproducts', [App\Http\Controllers\CourseController::class, 'boughtproducts'])->name('boughtproducts');
 Route::any('/adminboughtproducts', [App\Http\Controllers\CourseController::class, 'adminboughtproducts'])->name('adminboughtproducts');
+Route::any('/allproducts', [App\Http\Controllers\CourseController::class, 'allproducts'])->name('allproducts');
+Route::any('/updateRank', [App\Http\Controllers\CourseController::class, 'updateRank'])->name('updateRank');
 Route::any('/marksent/{id}', [App\Http\Controllers\CourseController::class, 'marksent'])->name('marksent');
 Route::any('/markreceived/{id}', [App\Http\Controllers\CourseController::class, 'markreceived'])->name('markreceived');
 Route::any('/markrefund/{id}', [App\Http\Controllers\CourseController::class, 'markrefund'])->name('markrefund');

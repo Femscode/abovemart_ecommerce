@@ -150,6 +150,11 @@
 								{{ Date('d-m-Y h:i',strtotime($product->created_at)) }}
 							</td>
 							<td>
+								
+								
+								@if($product->downloadURL  !== null)
+								<a class='btn btn-success' href='{{ $product->downloadURL }}'>Download</a>
+								@endif
 								@if($product->status == 1)
 								<div class='alert-sm alert alert-primary'>Payment Confirmed!</div>
 								@elseif($product->status == 2)
@@ -170,6 +175,7 @@
 
 							<!-- Table data -->
 							<td>
+								
 
 								<a class='btn btn-primary' href='tel:{{ $product->vendor->phoneNumber ?? ""}}'>Call Seller</a>
 								@if($product->status == 2)

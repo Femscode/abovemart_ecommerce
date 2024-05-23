@@ -84,7 +84,7 @@ class CourseController extends Controller
     {
         
         $data['user'] = $user = Auth::user();
-        $data['products'] = Product::where('user_id', $user->id)->latest()->get();
+        $data['products'] = Product::where('user_id', $user->id)->orderBy('rank')->latest()->get();
         // $data['products'] = Product::latest()->get();
         $data['allproducts'] = Product::latest()->get();
         $data['boughtproducts'] = Purchase::where('vendor_id', $user->id)->get();
@@ -99,16 +99,23 @@ class CourseController extends Controller
             return redirect()->route('market');
         }
     }
+    public function updateRank(Request $request) {
+        $product  = Product::find($request->productId);
+        $product->rank = $request->rank;
+        $product->save();
+        return redirect()->back()->with('message', "Product Rank Updated Successfully!");
+    }
     public function admin()
     {
         
         $data['user'] = $user = Auth::user();
-        $data['products'] = Product::latest()->get();
-        $data['allproducts'] = Product::latest()->get();
+        $data['products'] = Product::orderBy('rank')->latest()->get();
+        $data['allproducts'] = Product::orderBy('rank')->latest()->get();
         $data['boughtproducts'] = Purchase::get();
         $data['ann'] = Announcement::latest()->get();
         $data['categories'] = ProductCategory::orderBy('name')->get();
 
+        
         if (Auth::user()->type == 1) {
           
 
@@ -472,7 +479,7 @@ class CourseController extends Controller
     {
         
         $data['user'] =  $user = Auth::user();
-        $data['products'] = Product::where('active',1)->latest()->paginate(10);
+        $data['products'] = Product::where('active',1)->orderBy('rank')->latest()->paginate(10);
         $data['ann'] = Announcement::latest()->get();
 
         $data['expenses'] =$expenses = DB::table('transactions')
@@ -526,6 +533,7 @@ class CourseController extends Controller
             'slashed_price' => $request->slashed_price,
             'category' => $request->category,
             'subcategory' => $request->subcategory,
+            'downloadURL' => $request->downloadURL,
             'packages' => $package,
             'image' => $imageName,
         ]);
@@ -559,6 +567,7 @@ class CourseController extends Controller
         $course->slashed_price = $request->slashed_price;
         $course->category = $request->category;
         $course->subcategory = $request->subcategory;
+        $course->downloadURL = $request->downloadURL;
         $course->packages = $package;
 
         $course->save();
@@ -780,6 +789,7 @@ class CourseController extends Controller
                 'state' => $request->state,
                 'country' => $request->country,
                 'quantity' => $request->quantity,
+                'downloadURL' => $product->downloadURL,
                 'info' => $request->info,
                 
             ]);

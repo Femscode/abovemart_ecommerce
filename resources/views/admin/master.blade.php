@@ -405,6 +405,13 @@
 										<input id='image' name='image' required class="form-control" type="file"
 											accept="image/*" placeholder="Input product title">
 									</div>
+									<div class="col-12 alert alert-info">
+										<label class="form-label">Is this product a digital product?</label>
+										<input id='yesDigital' type='radio' name='isDigital' value='1'/>Yes
+										<input id='noDigital' type='radio' checked name='isDigital' value='0'/>No
+										<input style='display:none' id='downloadurl' name='downloadurl' class="form-control" type="text"
+										 placeholder="Input downloadable url">
+									</div>
 
 
 
@@ -504,6 +511,14 @@
 									</div>
 									<input id='editimage' class="form-control" type="file" accept="image/*"
 										placeholder="Input product title">
+								</div>
+
+								<div class="col-12 alert alert-info">
+									<label class="form-label">Is this product a digital product?</label>
+									<input id='edityesDigital' type='radio' name='editisDigital' value='1'/>Yes
+									<input id='editnoDigital' type='radio' checked name='editisDigital' value='0'/>No
+									<input value='{{ $product->downloadURL }}' style='display:none' id='editdownloadurl' name='editdownloadurl'  class="form-control" type="text"
+									 placeholder="Input downloadable url">
 								</div>
 						</div>
 						<div class="modal-footer">
@@ -629,6 +644,7 @@ $("#editcategory").change(function() {
 							fd.append('subcategory', $("#subcategory").val());
 							fd.append('package', selectedPackagesString);
 							fd.append('price', $("#price").val());
+							fd.append('downloadURL', $("#downloadurl").val());
 							fd.append('slashed_price', $("#slashed_price").val());
 							if(image[0] != undefined) {
            						 fd.append('image', image[0]);
@@ -680,6 +696,7 @@ $("#editcategory").change(function() {
 							
 							fd.append('package', selectedPackagesString);
 							fd.append('price', $("#editprice").val());
+							fd.append('downloadURL', $("#editdownloadurl").val());
 							fd.append('slashed_price', $("#editslashedprice").val());
 							fd.append('quantity', $("#editquantity").val());
 							if(image[0] != undefined) {
@@ -793,7 +810,48 @@ $("#editcategory").change(function() {
             $('#packageall').prop('checked', true);
         }
     });
+
+
+
+    // Function to toggle the visibility of the download URL input field
+   
+
+
+	function toggleDownloadUrl() {
+        if ($('#yesDigital').is(':checked')) {
+            $('#downloadurl').show();
+        } else {
+            $('#downloadurl').hide().val('');  // Hide and clear the value of the input field
+        }
+    }
+
+    // Function to toggle the visibility of the download URL input field for the second set
+    function toggleEditDownloadUrl() {
+        if ($('#edityesDigital').is(':checked')) {
+            $('#editdownloadurl').show();
+        } else {
+            $('#editdownloadurl').hide().val('');  // Hide and clear the value of the input field
+        }
+    }
+
+    // Initial calls to set the correct visibility on page load
+    toggleDownloadUrl();
+    toggleEditDownloadUrl();
+
+    // Add event listeners to the radio buttons for the first set
+    $('input[name="isDigital"]').change(function() {
+        toggleDownloadUrl();
+    });
+
+    // Add event listeners to the radio buttons for the second set
+    $('input[name="editisDigital"]').change(function() {
+        toggleEditDownloadUrl();
+    });
+
+
+	
 });
+
 
 </script>
 @yield('script')
