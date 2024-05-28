@@ -16,7 +16,7 @@
 			{{-- <a href="/admin_access" class="btn btn-sm btn-info mb-0"><i class="bi bi-plus-circle me-2"></i>Admin Access</a> --}}
 			</div>
 		</div>
-		<div class='alert alert-success'>
+		<div class='alert alert-success' style='border:1.5px dashed #155724'>
 			My Vendor's URL : <a target="_blank" href='https://shop.abovemarts.com/vendor/{{ $user->username }}' style='color:red'><i>https://shop.abovemarts.com/vendor/{{ $user->username }}</i></a>
 		</div>
 	</div>

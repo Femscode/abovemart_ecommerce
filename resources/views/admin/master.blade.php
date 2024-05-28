@@ -517,7 +517,7 @@
 									<label class="form-label">Is this product a digital product?</label>
 									<input id='edityesDigital' type='radio' name='editisDigital' value='1'/>Yes
 									<input id='editnoDigital' type='radio' checked name='editisDigital' value='0'/>No
-									<input value='{{ $product->downloadURL }}' style='display:none' id='editdownloadurl' name='editdownloadurl'  class="form-control" type="text"
+									<input value='{{ $product->downloadURL ?? "" }}' style='display:none' id='editdownloadurl' name='editdownloadurl'  class="form-control" type="text"
 									 placeholder="Input downloadable url">
 								</div>
 						</div>
