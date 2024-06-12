@@ -94,6 +94,8 @@
 									class="fas fa-list fa-fw me-2"></i>Product Categories</a></li>
 						<li class="nav-item"> <a class="nav-link" href="/market"><i
 									class="fas fa-list fa-fw me-2"></i>Customer Dashboard</a></li>
+						<li class="nav-item"> <a class="nav-link" href="/dashboard"><i
+									class="fas fa-list fa-fw me-2"></i>Vendor's Dashboard</a></li>
 						@if($user->type == 1)
 						<li class="nav-item"> <a class="nav-link" href="/admin_access"><i
 									class="fas fa-user-cog fa-fw me-2"></i>Admin Access</a></li>
@@ -412,6 +414,10 @@
 										<input style='display:none' id='downloadurl' name='downloadurl' class="form-control" type="text"
 										 placeholder="Input downloadable url">
 									</div>
+									<div class="col-12 alert alert-info">
+										<label class="form-label">Platform Share (Min 10%)</label>
+										<input name='discount' id='discount' value='10' min='10' class="form-control" type="text" >
+									</div>
 
 
 
@@ -520,6 +526,13 @@
 									<input value='{{ $product->downloadURL ?? "" }}' style='display:none' id='editdownloadurl' name='editdownloadurl'  class="form-control" type="text"
 									 placeholder="Input downloadable url">
 								</div>
+
+								<div class="col-12 alert alert-info">
+									<label class="form-label">Platform Share (Min 10%)</label>
+									<input name='editdiscount' id='editdiscount' value='10' min='10' class="form-control" type="text" >
+								</div>
+
+								
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger-soft my-0"
@@ -619,6 +632,7 @@ $("#editcategory").change(function() {
 							$("#editprice").val(data.price)
 							$("#editslashedprice").val(data.slashed_price)
 							$("#editquantity").val(data.quantity)
+							$("#editdiscount").val(data.discount)
 							
 							$("#editpackagelist").html(data.packages)
 						
@@ -646,6 +660,7 @@ $("#editcategory").change(function() {
 							fd.append('price', $("#price").val());
 							fd.append('downloadURL', $("#downloadurl").val());
 							fd.append('slashed_price', $("#slashed_price").val());
+							fd.append('discount', $("#discount").val());
 							if(image[0] != undefined) {
            						 fd.append('image', image[0]);
            					 }
@@ -699,6 +714,7 @@ $("#editcategory").change(function() {
 							fd.append('downloadURL', $("#editdownloadurl").val());
 							fd.append('slashed_price', $("#editslashedprice").val());
 							fd.append('quantity', $("#editquantity").val());
+							fd.append('discount', $("#editdiscount").val());
 							if(image[0] != undefined) {
            						 fd.append('image', image[0]);
            					 }

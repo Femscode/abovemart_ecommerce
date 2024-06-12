@@ -17,7 +17,10 @@
 			</div>
 		</div>
 		<div class='alert alert-success' style='border:1.5px dashed #155724'>
-			My Vendor's URL : <a target="_blank" href='https://shop.abovemarts.com/vendor/{{ $user->username }}' style='color:red'><i>https://shop.abovemarts.com/vendor/{{ $user->username }}</i></a>
+			My Vendor's URL : <a target="_blank" href='https://shop.abovemarts.com/vendor/{{ $user->username }}' style='color:red'><i>https://shop.abovemarts.com/vendor/{{ $user->username }}</i></a><br>
+			Escrow Wallet : <span style='color:red'>₦{{ number_format($user->escrowWallet,2) }}</span>
+			<br><a class='btn btn-primary' href='#'>Purchase Transactions</a>
+			<a class='btn btn-success' href='https://wa.me/234'>Withdraw Funds</a>
 		</div>
 	</div>
 
@@ -167,6 +170,8 @@
 								NGN{{ number_format($product->price) }} <s>NGN{{ number_format($product->slashed_price) }}</s>
 								<br>Quantity : {{ number_format($product->quantity) }}
 								@endif
+								<br>
+								Platform Share : {{ $product->discount }}%
 							</td>
 
 							<!-- Table data -->
